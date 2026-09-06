@@ -243,33 +243,13 @@ window.LIGARENT_CONFIG = {
 
   <!-- ─────────────────────────── hero ──────────────────────────────────── -->
   <section id="hero" data-stage="hero" class="hero">
+    <!-- Eight letters, not two words: each one lands on its own, keeps
+         drifting out of phase with its neighbours, and the pair jolts every
+         few seconds. Per-letter spans are the only way to drive them
+         separately. All CSS — nothing here is downloaded. -->
     <div class="hero__mark" aria-hidden="true">
-      <svg viewBox="0 0 1400 250" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <linearGradient id="wmSweep" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0"   stop-color="#ffe9a8" stop-opacity="0"/>
-            <stop offset=".45" stop-color="#fff3cd" stop-opacity="1"/>
-            <stop offset=".55" stop-color="#fff3cd" stop-opacity="1"/>
-            <stop offset="1"   stop-color="#ffe9a8" stop-opacity="0"/>
-          </linearGradient>
-          <!-- userSpaceOnUse: the default bounding-box units size the mask
-               region around the moving rect, which put the letters outside it
-               and left the sweep invisible. -->
-          <mask id="wmMask" maskUnits="userSpaceOnUse" x="0" y="0" width="1400" height="250">
-            <text class="wm wm--fill" x="26" y="176">LIGA</text>
-            <text class="wm wm--fill" x="1374" y="176" text-anchor="end">RENT</text>
-          </mask>
-        </defs>
-        <text class="wm wm--draw wm--a" x="26" y="176">LIGA</text>
-        <text class="wm wm--draw wm--b" x="1374" y="176" text-anchor="end">RENT</text>
-        <!-- The mask goes on a group that never moves. On the rect itself it
-             would travel with the rect's transform — the light and the
-             letter-shaped window it shines through moving in lockstep, never
-             overlapping. Measured: brightness flat for ten seconds. -->
-        <g mask="url(#wmMask)">
-          <rect class="wm__sweep" x="-620" y="0" width="560" height="250" fill="url(#wmSweep)"/>
-        </g>
-      </svg>
+      <span class="wmw wmw--a"><span class="ltr">L</span><span class="ltr">I</span><span class="ltr">G</span><span class="ltr">A</span></span>
+      <span class="wmw wmw--b"><span class="ltr">R</span><span class="ltr">E</span><span class="ltr">N</span><span class="ltr">T</span></span>
     </div>
     <div class="hero__inner">
       <p class="eyebrow" data-plow="0.5" data-i18n="hero.eyebrow">Bulldozer rental · operator included · 24/7</p>

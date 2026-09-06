@@ -424,49 +424,80 @@ section.sec::before,.cta2::before{
 
 
 /* ═══════════ the name, as the hero ═══════════════════════════════════════
-   The films came out at the owner's request and the wordmark took their place.
-   It draws itself in outline, fills faintly, then a light runs across the
-   letters every few seconds — masked to the glyphs, so nothing sweeps across
-   the empty background. All CSS: no script, no video, nothing to download. */
+   The first version — an outline drawing itself once, then a slow shine — was
+   too quiet to read as anything at all. Eight letters now, each on its own
+   timeline: a slam-in with overshoot, a permanent drift so nothing ever sits
+   still, a jolt every few seconds, and a light running through the fill. All
+   CSS, nothing downloaded. Reduced motion gets the finished state, still. */
 .hero__mark{
-  position:absolute;left:0;right:0;top:16vh;z-index:0;
-  pointer-events:none;user-select:none;
+  position:absolute;left:0;right:0;top:9vh;z-index:0;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding-inline:calc(var(--gut) * .45);
+  pointer-events:none;user-select:none;white-space:nowrap;
 }
-/* no overflow: the glyphs used to spill past the viewBox and get cut off
-   by the window edge — the L and the T were both losing a stroke */
-.hero__mark svg{width:100%;height:auto;display:block;overflow:hidden}
+.wmw{display:flex;animation:wmJolt 9s ease-in-out 2.4s infinite}
+.wmw--b{animation-delay:6.9s}
 
-.wm{
+.ltr{
+  display:block;
   font-family:var(--f-display);font-weight:800;font-style:italic;
-  font-size:168px;letter-spacing:-.03em;
+  font-size:clamp(104px,22.5vw,340px);line-height:.8;letter-spacing:-.045em;
+  /* stroke draws the letter, the gradient fill is what the light runs through */
+  color:transparent;
+  -webkit-text-stroke:2.5px rgba(249,176,0,.82);
+  background-image:linear-gradient(100deg,
+    rgba(249,176,0,.10) 0 42%, rgba(255,243,205,.92) 50%, rgba(249,176,0,.10) 58% 100%);
+  background-size:320% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  animation:
+    wmSlam 1.05s cubic-bezier(.2,1.5,.3,1) backwards,
+    wmDrift 5.5s ease-in-out infinite,
+    wmShine 7s linear infinite;
+  transform-origin:50% 100%;
 }
-.wm--draw{
-  fill:transparent;
-  stroke-width:2;
-  stroke-dasharray:2800;stroke-dashoffset:2800;
-  animation:wmDraw 2s cubic-bezier(.33,0,.15,1) forwards,
-            wmFill 1.1s ease forwards;
-}
-.wm--a{stroke:rgba(249,176,0,.78);--wmfill:rgba(249,176,0,.12);animation-delay:.15s,1.5s}
-.wm--b{stroke:rgba(255,255,255,.40);--wmfill:rgba(255,255,255,.07);animation-delay:.5s,1.9s}
-@keyframes wmDraw{to{stroke-dashoffset:0}}
-@keyframes wmFill{to{fill:var(--wmfill)}}
+.wmw--b .ltr{-webkit-text-stroke-color:rgba(255,255,255,.5);
+  background-image:linear-gradient(100deg,
+    rgba(255,255,255,.06) 0 42%, rgba(255,255,255,.85) 50%, rgba(255,255,255,.06) 58% 100%);}
 
-.wm--fill{fill:#fff}                 /* the mask: white = the sweep shows here */
-.wm__sweep{
-  animation:wmSweep 7s cubic-bezier(.5,0,.5,1) 3s infinite;
-  opacity:.85;
+/* each letter lands, drifts and shines on its own clock */
+.wmw--a .ltr:nth-child(1){animation-delay:.10s,0s,0s}
+.wmw--a .ltr:nth-child(2){animation-delay:.20s,.7s,.4s}
+.wmw--a .ltr:nth-child(3){animation-delay:.30s,1.4s,.8s}
+.wmw--a .ltr:nth-child(4){animation-delay:.40s,2.1s,1.2s}
+.wmw--b .ltr:nth-child(1){animation-delay:.50s,.4s,1.6s}
+.wmw--b .ltr:nth-child(2){animation-delay:.60s,1.1s,2.0s}
+.wmw--b .ltr:nth-child(3){animation-delay:.70s,1.8s,2.4s}
+.wmw--b .ltr:nth-child(4){animation-delay:.80s,2.5s,2.8s}
+
+@keyframes wmSlam{
+  0%   {transform:translateY(-130%) rotate(-16deg) scale(1.5);opacity:0}
+  55%  {opacity:1}
+  70%  {transform:translateY(9%) rotate(3deg) scale(.94)}
+  85%  {transform:translateY(-4%) rotate(-1.5deg) scale(1.02)}
+  100% {transform:none;opacity:1}
 }
-@keyframes wmSweep{
-  0%   {transform:translateX(0)}
-  38%  {transform:translateX(2080px)}
-  100% {transform:translateX(2080px)}
+@keyframes wmDrift{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  25%    {transform:translateY(-12px) rotate(-1.6deg)}
+  50%    {transform:translateY(4px) rotate(.9deg)}
+  75%    {transform:translateY(-7px) rotate(1.4deg)}
+}
+@keyframes wmJolt{
+  0%,88%,100%{transform:translateX(0) skewX(0deg)}
+  90%  {transform:translateX(-14px) skewX(-3deg)}
+  93%  {transform:translateX(10px) skewX(2deg)}
+  96%  {transform:translateX(-4px) skewX(-.8deg)}
+}
+@keyframes wmShine{
+  0%  {background-position:150% 0}
+  45% {background-position:-50% 0}
+  100%{background-position:-50% 0}
 }
 
 @media (prefers-reduced-motion:reduce){
-  .wm--draw{animation:none;stroke-dashoffset:0;fill:var(--wmfill)}
-  .wm__sweep{animation:none;opacity:0}
+  .ltr,.wmw{animation:none}
+  .ltr{background-position:50% 0}
 }
 @media (max-aspect-ratio:13/10){
-  .hero__mark{top:auto;bottom:auto;position:relative;margin:6px 0 -10px}
+  .hero__mark{position:relative;top:auto;margin:4px 0 -6px}
 }
