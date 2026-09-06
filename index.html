@@ -262,8 +262,13 @@ window.LIGARENT_CONFIG = {
         </defs>
         <text class="wm wm--draw wm--a" x="26" y="176">LIGA</text>
         <text class="wm wm--draw wm--b" x="1374" y="176" text-anchor="end">RENT</text>
-        <rect class="wm__sweep" x="-620" y="0" width="560" height="250"
-              fill="url(#wmSweep)" mask="url(#wmMask)"/>
+        <!-- The mask goes on a group that never moves. On the rect itself it
+             would travel with the rect's transform — the light and the
+             letter-shaped window it shines through moving in lockstep, never
+             overlapping. Measured: brightness flat for ten seconds. -->
+        <g mask="url(#wmMask)">
+          <rect class="wm__sweep" x="-620" y="0" width="560" height="250" fill="url(#wmSweep)"/>
+        </g>
       </svg>
     </div>
     <div class="hero__inner">
