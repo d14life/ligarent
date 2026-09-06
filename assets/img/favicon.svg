@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="8" fill="#f9b000"/>
+  <rect y="0"  width="64" height="7" fill="#9e1b23"/>
+  <rect y="57" width="64" height="7" fill="#9e1b23"/>
+  <text x="32" y="45" text-anchor="middle" fill="#0a0a0b"
+        font-family="Roboto Condensed, Archivo, system-ui, sans-serif"
+        font-size="38" font-weight="700" font-style="italic">L</text>
+</svg>

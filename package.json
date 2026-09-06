@@ -1,0 +1,14 @@
+{
+  "name": "ligarent-site",
+  "private": true,
+  "type": "module",
+  "description": "LIGARENT bulldozer rental landing page. No build step; the site itself has no dependencies. These are only needed to run the checks in tools/.",
+  "scripts": {
+    "check": "node tools/verify_site.mjs",
+    "check:i18n": "node tools/check_i18n.mjs",
+    "check:telegram": "node api/test-message.mjs"
+  },
+  "devDependencies": {
+    "puppeteer": "^24.0.0"
+  }
+}

@@ -1,0 +1,14 @@
+# Only the site ships. Everything below is the workshop, not the product.
+# NOTE: comments must be on their own line — git does not strip a trailing
+# comment from a pattern, so "source/  # raw" ignores nothing at all.
+
+# raw downloads, originals and rejected takes (~1.5 GB)
+source/
+
+# verification suite, encoders, capture scripts, bundled ffmpeg (~414 MB)
+tools/
+
+node_modules/
+*.zip
+index.html.bak
+.claude/

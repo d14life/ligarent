@@ -1,0 +1,13 @@
+name = "ligarent-lead"
+main = "telegram-worker.js"
+compatibility_date = "2025-01-01"
+
+# Lock this to the live domain once the site is deployed, e.g.
+#   ALLOWED_ORIGIN = "https://ligarent.com"
+# "*" accepts any origin, which is fine while testing.
+[vars]
+ALLOWED_ORIGIN = "*"
+
+# TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID are SECRETS, never put here:
+#   wrangler secret put TELEGRAM_BOT_TOKEN
+#   wrangler secret put TELEGRAM_CHAT_ID

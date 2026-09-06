@@ -1,0 +1,23 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   LIGARENT — performance overrides, loaded last.
+   Forty-seven panels each running a live backdrop blur (some with an SVG
+   displacement filter on top) made scrolling stutter on an ordinary laptop.
+   Blur is kept only on the two fixed elements, where it is visible and cheap;
+   every content panel becomes a solid translucent surface instead.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.glass,.glass--refract{
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  background:rgba(17,17,19,.94);
+}
+.topbar,.fab,.liquid-fab{
+  backdrop-filter:blur(14px) saturate(1.3)!important;
+  -webkit-backdrop-filter:blur(14px) saturate(1.3)!important;
+  background:rgba(12,12,14,.72);
+}
+.marquee{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(10,10,11,.9)}
+.ba__tag{backdrop-filter:none}
+/* the 300 px outlined wordmark repainted a 28 px blur every frame */
+.hero__ghost,.hero__ghost span:last-child{text-shadow:none}
+/* decode below-the-fold images off the main thread */
+img{content-visibility:auto}
+section.sec{content-visibility:auto;contain-intrinsic-size:auto 900px}
