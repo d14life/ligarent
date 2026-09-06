@@ -514,16 +514,28 @@ section.sec::before,.cta2::before{
    rectangle. These values put the machines on screen at a measured 50-60. */
 #machines,#picker,#work,#coverage,#faq,#contact,.cta2{
   background-repeat:no-repeat;
-  /* two layers, deliberately different. The scrim scrolls with the section so
-     its top and bottom stops always land on the section's own head and foot.
+  /* Three layers, each doing one job.
+
      The photograph is pinned to the viewport, because `cover` on a 2 500px-tall
      section scales a 1 000px image to about 3 800px wide and all you see is one
      featureless grey patch — measured on #work, which is the tallest. Pinned, it
-     is always sized to the window and always reads as a machine. */
-  background-attachment:scroll,fixed;
-  background-size:auto,cover;
-  background-position:center,center;
+     is always sized to the window and always reads as a machine.
+
+     Over it a vertical scrim that scrolls with the section, so its top and
+     bottom stops land on the section's own head and foot.
+
+     Over that the side masks: both edges stay plain black and the machine comes
+     through the middle band only. Full bleed read as busy behind the copy; this
+     keeps the page's black frame and puts the photograph where the eye goes. */
+  background-attachment:scroll,scroll,fixed;
+  background-size:auto,auto,cover;
+  background-position:center,center,center;
   background-image:
+    linear-gradient(90deg,
+      rgba(10,10,12,1) 0,
+      rgba(10,10,12,0) var(--s-edge,25%),
+      rgba(10,10,12,0) calc(100% - var(--s-edge,25%)),
+      rgba(10,10,12,1) 100%),
     linear-gradient(180deg,
       rgba(10,10,12,var(--s-top)) 0,
       rgba(10,10,12,var(--s-mid)) 22%,
@@ -541,10 +553,18 @@ section.sec::before,.cta2::before{
    percentages so the band always closes cleanly whatever the section height. */
 @media (max-width:900px),(prefers-reduced-motion:reduce){
   #machines,#picker,#work,#coverage,#faq,#contact,.cta2{
-    background-attachment:scroll,scroll;
-    background-size:auto,auto 460px;
-    background-position:center,center top;
+    /* 25% off each edge of a 390px screen leaves a 195px window, which is not a
+       photograph of anything — the phone masks are half the width */
+    --s-edge:12%;
+    background-attachment:scroll,scroll,scroll;
+    background-size:auto,auto,auto 460px;
+    background-position:center,center,center top;
     background-image:
+      linear-gradient(90deg,
+        rgba(10,10,12,1) 0,
+        rgba(10,10,12,0) var(--s-edge),
+        rgba(10,10,12,0) calc(100% - var(--s-edge)),
+        rgba(10,10,12,1) 100%),
       linear-gradient(180deg,
         rgba(10,10,12,var(--s-top)) 0,
         rgba(10,10,12,var(--s-mid)) 150px,
@@ -569,10 +589,15 @@ section.sec::before,.cta2::before{
    photograph is left open at the top and the scrim closes over the bottom. */
 #hero{
   background-repeat:no-repeat;
-  background-attachment:scroll,fixed;
-  background-size:auto,cover;
-  background-position:center,center;
+  background-attachment:scroll,scroll,fixed;
+  background-size:auto,auto,cover;
+  background-position:center,center,center;
   background-image:
+    linear-gradient(90deg,
+      rgba(10,10,12,1) 0,
+      rgba(10,10,12,0) 14%,
+      rgba(10,10,12,0) 86%,
+      rgba(10,10,12,1) 100%),
     linear-gradient(180deg,
       rgba(10,10,12,.50) 0,
       rgba(10,10,12,.56) 34%,
@@ -581,7 +606,41 @@ section.sec::before,.cta2::before{
     url('../media/bg-hero.jpg');
 }
 @media (max-width:900px),(prefers-reduced-motion:reduce){
-  #hero{background-attachment:scroll,scroll}
+  #hero{background-attachment:scroll,scroll,scroll}
+}
+
+/* The closing call and the enquiry form keep their copy in a left column, so
+   they hold the vertical scrim a little deeper than the rest. The side masks
+   are the same as everywhere else — they used to carry a scrim leaning
+   sideways instead, measured at 4.39:1 and 3.77:1 before it was tuned. */
+#contact,.cta2{--s-top:.84;--s-mid:.68}
+
+/* The hero was the one section left on plain black, and it is the first thing
+   anyone sees — so it read as a page whose images had failed to load. It takes
+   a photograph like the rest, but its scrim runs the other way up: the copy is
+   pinned to the BOTTOM of the hero (justify-content:flex-end), while the top
+   holds only the outlined wordmark, which needs no protection at all. So the
+   photograph is left open at the top and the scrim closes over the bottom. */
+#hero{
+  background-repeat:no-repeat;
+  background-attachment:scroll,scroll,fixed;
+  background-size:auto,auto,cover;
+  background-position:center,center,center;
+  background-image:
+    linear-gradient(90deg,
+      rgba(10,10,12,1) 0,
+      rgba(10,10,12,0) 14%,
+      rgba(10,10,12,0) 86%,
+      rgba(10,10,12,1) 100%),
+    linear-gradient(180deg,
+      rgba(10,10,12,.50) 0,
+      rgba(10,10,12,.56) 34%,
+      rgba(10,10,12,.88) 74%,
+      rgba(10,10,12,.95) 100%),
+    url('../media/bg-hero.jpg');
+}
+@media (max-width:900px),(prefers-reduced-motion:reduce){
+  #hero{background-attachment:scroll,scroll,scroll}
 }
 
 /* Two sections put their copy in a left column and give the machine the whole
