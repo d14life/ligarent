@@ -126,7 +126,7 @@ function buildLangMenu() {
    of the viewport. Chrome elements list the stages they belong to in
    data-show; anything not listed animates out. This is what makes the UI
    visibly rebuild as you scroll rather than just scrolling past.            */
-const STAGE_ORDER = ['hero', 'process', 'machines', 'picker', 'work',
+const STAGE_ORDER = ['hero', 'machines', 'picker', 'work',
                      'coverage', 'faq', 'contact'];
 // null, not 'hero': the first call must actually run so the chrome starts in
 // its correct state. Seeding it with 'hero' made setStage('hero') an early
