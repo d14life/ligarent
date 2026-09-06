@@ -5,6 +5,10 @@
    the work, not the provenance of the picture. Merged after the others. */
 export const WORK = {
 en: {
+  'dz.eyebrow': 'On the job',
+  'dz.title': "A Cat D9L on the dirt",
+  'dz.sub': "Fourteen seconds, uncut: blade down, working red clay. Somebody else’s machine — ours goes here the moment we have footage of our own.",
+  'dz.credit': 'Footage: Adria Lora, CC BY 3.0',
   'clip.eyebrow': 'On the job',
   'clip.title': "A machine taking the scrub off a plot",
   'clip.sub': "Fourteen seconds, uncut. The machine works through standing brush and leaves open ground behind it — the stage before levelling.",
@@ -25,6 +29,10 @@ en: {
   'foot.credits': 'Photographs and time-lapse frames on this site include openly licensed images from Wikimedia Commons; per-image credits in the source.'
 },
 ru: {
+  'dz.eyebrow': 'В работе',
+  'dz.title': "Cat D9L на грунте",
+  'dz.sub': "Четырнадцать секунд без монтажа: отвал опущен, машина идёт по красной глине. Машина чужая — свои кадры поставим, как только будут.",
+  'dz.credit': 'Съёмка: Adria Lora, CC BY 3.0',
   'clip.eyebrow': 'В работе',
   'clip.title': "Машина снимает подрост с участка",
   'clip.sub': "Четырнадцать секунд без монтажа. Техника идёт по кустарнику, за ней остаётся открытый грунт — этап перед планировкой.",
@@ -45,6 +53,10 @@ ru: {
   'foot.credits': 'Среди фотографий и кадров таймлапсов на сайте есть свободно лицензированные материалы с Wikimedia Commons; ссылки на авторов — в исходниках.'
 },
 es: {
+  'dz.eyebrow': 'En obra',
+  'dz.title': "Un Cat D9L sobre el terreno",
+  'dz.sub': "Catorce segundos sin cortes: hoja abajo, trabajando arcilla roja. La máquina es de otros; la nuestra irá aquí en cuanto tengamos imágenes propias.",
+  'dz.credit': 'Imágenes: Adria Lora, CC BY 3.0',
   'clip.eyebrow': 'En obra',
   'clip.title': "Una máquina retirando el matorral de una parcela",
   'clip.sub': "Catorce segundos sin cortes. La máquina avanza entre la maleza y deja el suelo abierto detrás: la fase previa a la nivelación.",
@@ -65,6 +77,10 @@ es: {
   'foot.credits': 'Las fotografías y los fotogramas de time-lapse del sitio incluyen material con licencia libre de Wikimedia Commons; créditos por imagen en el código fuente.'
 },
 fr: {
+  'dz.eyebrow': 'Sur le chantier',
+  'dz.title': "Un Cat D9L sur le terrain",
+  'dz.sub': "Quatorze secondes sans coupe : lame baissée, la machine travaille l’argile rouge. Ce n’est pas notre machine — les nôtres viendront dès que nous aurons des images.",
+  'dz.credit': 'Images : Adria Lora, CC BY 3.0',
   'clip.eyebrow': 'Sur le chantier',
   'clip.title': "Une machine qui enlève la broussaille d’une parcelle",
   'clip.sub': "Quatorze secondes sans coupe. La machine avance dans les broussailles et laisse le sol ouvert derrière elle — l’étape avant le réglage.",
@@ -85,6 +101,10 @@ fr: {
   'foot.credits': 'Les photographies et images de time-lapse du site comprennent des documents sous licence libre de Wikimedia Commons ; crédits par image dans les sources.'
 },
 tt: {
+  'dz.eyebrow': 'Эштә',
+  'dz.title': "Грунтта Cat D9L",
+  'dz.sub': "Ун дүрт секунд, монтажсыз: отвал төшерелгән, машина кызыл балчык буенча бара. Машина чит — үз кадрларыбыз булуга куябыз.",
+  'dz.credit': 'Төшерәлеш: Adria Lora, CC BY 3.0',
   'clip.eyebrow': 'Эштә',
   'clip.title': "Машина участоктан үсентеләрне ала",
   'clip.sub': "Ун дүрт секунд, монтажсыз. Техника куаклык арасыннан бара, артыннан ачык жир кала — планировкага кадәрге этап.",
@@ -105,6 +125,10 @@ tt: {
   'foot.credits': 'Сайттагы фотолар һәм таймлапс кадрлары арасында Wikimedia Commons’ның ирекле лицензияле материаллары бар; авторлар — чыганак кодта.'
 },
 zh: {
+  'dz.eyebrow': '施工中',
+  'dz.title': "在土方上作业的 Cat D9L",
+  'dz.sub': "十四秒，未剪辑：铲刀落下，机器在红黏土上作业。这不是我们的机器——一旦有自己的镜头就换上。",
+  'dz.credit': '画面：Adria Lora，CC BY 3.0',
   'clip.eyebrow': '施工中',
   'clip.title': "机器正在清除地块上的灌木",
   'clip.sub': "十四秒，未剪辑。机器穿过灌木，身后留下开阔的地面——这是整平之前的一道工序。",

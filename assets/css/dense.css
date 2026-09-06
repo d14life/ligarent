@@ -403,3 +403,21 @@ section.sec::before,.cta2::before{
   background:rgba(10,10,12,.55);
   backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);
 }
+
+
+/* ═══════════ the one real bulldozer film ═════════════════════════════════
+   The only openly licensed footage of a working bulldozer is 480x360. Across a
+   hero it measured 52x less detail than the 4K films (sharpness 23 vs 1210).
+   Boxed at no more than its own source width it is never upscaled, so the
+   softness never shows — the machine is right, and the picture holds. */
+.dozerbox{margin:0;max-width:640px}
+.dozerbox__frame{
+  border-radius:var(--r);overflow:hidden;border:1px solid var(--line-soft);
+  background:var(--s1);aspect-ratio:4/3;
+}
+.dozerbox__v{width:100%;height:100%;display:block;object-fit:cover;
+  filter:brightness(.94) saturate(.98)}
+.dozerbox__src{
+  margin-top:10px;font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;
+  color:var(--fg-3);
+}
