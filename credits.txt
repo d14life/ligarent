@@ -1,0 +1,113 @@
+LIGARENT — photograph credits
+
+Every photograph on this site is an openly licensed image from Wikimedia
+Commons. They are used as backgrounds and illustrations, cropped, blurred and
+colour-adjusted; none of the changes are endorsed by the photographers.
+
+CC BY and CC BY-SA images require attribution, which is why this file is
+published with the site rather than kept in the source tree.
+
+assets/media/bg-contact.jpg          ESO/G. Hüdepohl (atacamaphoto.com)
+                                     CC BY 4.0
+                                     https://commons.wikimedia.org/wiki/File:A_bulldozer_in_the_desert_(d8b5972).jpg
+
+assets/media/bg-coverage.jpg         Oast House Archive
+                                     CC BY-SA 2.0
+                                     https://commons.wikimedia.org/wiki/File:Road_construction_works_-_geograph.org.uk_-_4455606.jpg
+
+assets/media/bg-cta.jpg              George Armstrong
+                                     Public domain
+                                     https://commons.wikimedia.org/wiki/File:FEMA_-_38836_-_Chipped_debris_in_Duval.jpg
+
+assets/media/bg-faq.jpg              Siim Roov
+                                     CC BY-SA 4.0
+                                     https://commons.wikimedia.org/wiki/File:Narva_mine_bulldozer_2.jpg
+
+assets/media/bg-machines.jpg         Alf van Beem
+                                     CC0
+                                     https://commons.wikimedia.org/wiki/File:Caterpillar_D8R_p1.JPG
+
+assets/media/bg-picker.jpg           Alf van Beem
+                                     CC0
+                                     https://commons.wikimedia.org/wiki/File:Caterpillar_D6R_LGP.JPG
+
+assets/media/bg-work.jpg             United States Air Force, Master Sgt. Rickie D. Bickle
+                                     Public domain
+                                     https://commons.wikimedia.org/wiki/File:Seabee_using_Cat_D8T.jpg
+
+assets/media/photos/machine-d6r.jpg  AlfvanBeem
+                                     CC0
+                                     https://commons.wikimedia.org/wiki/File:Caterpillar_D8R_p3.JPG
+
+assets/media/photos/machine-d7r.jpg  Alf van Beem
+                                     CC0
+                                     https://commons.wikimedia.org/wiki/File:Caterpillar_D7R_p1.JPG
+
+assets/media/photos/machine-d8r.jpg  Alf van Beem
+                                     CC0
+                                     https://commons.wikimedia.org/wiki/File:Caterpillar_D8R_p1.JPG
+
+assets/media/real_bulk.jpg           United States Air Force, Master Sgt. Rickie D. Bickle
+                                     Public domain
+                                     https://commons.wikimedia.org/wiki/File:Seabee_using_Cat_D8T.jpg
+
+assets/media/real_bulk2.jpg          ESO/G. Hüdepohl (atacamaphoto.com)
+                                     CC BY 4.0
+                                     https://commons.wikimedia.org/wiki/File:A_bulldozer_in_the_desert_(d8b5972).jpg
+
+assets/media/real_d7r_front.jpg      Alf van Beem
+                                     CC0
+                                     https://commons.wikimedia.org/wiki/File:Caterpillar_D7R_p2.JPG
+
+assets/media/real_d8r_front.jpg      AlfvanBeem
+                                     CC0
+                                     https://commons.wikimedia.org/wiki/File:Caterpillar_D8R_p3.JPG
+
+assets/media/real_debris.jpg         George Armstrong
+                                     Public domain
+                                     https://commons.wikimedia.org/wiki/File:FEMA_-_38836_-_Chipped_debris_in_Duval.jpg
+
+assets/media/real_desert.jpg         ESO/G. Hüdepohl (atacamaphoto.com)
+                                     CC BY 4.0
+                                     https://commons.wikimedia.org/wiki/File:Bulldozer_at_work_(d8b5981).jpg
+
+assets/media/real_finish.jpg         Federal Highway Administration
+                                     Public domain
+                                     https://commons.wikimedia.org/wiki/File:Bulldozer_with_GPS_Receivers_for_Grade_Control_MN_(8473476889).jpg
+
+assets/media/real_forest.jpg         UuMUfQ
+                                     CC BY-SA 4.0
+                                     https://commons.wikimedia.org/wiki/File:Ortenberg_Usenborn_Roadwork_Forest_Bulldozer_CAT_D6_LGP_WKA_202510_a.png
+
+assets/media/real_grade_road.jpg     AMISOM Public Information
+                                     CC0
+                                     https://commons.wikimedia.org/wiki/File:2013_11_10_Afgoye_Road_Works_G.jpg_(10794633643).jpg
+
+assets/media/real_levee.jpg          U.S. Army Corps of Engineers from USA
+                                     CC BY 2.0
+                                     https://commons.wikimedia.org/wiki/File:First_day_of_levee_construction_near_Sacramentoâs_River_Park_(9372404668).jpg
+
+assets/media/real_rip.jpg            Siim Roov
+                                     CC BY-SA 4.0
+                                     https://commons.wikimedia.org/wiki/File:Narva_mine_bulldozer_2.jpg
+
+assets/media/real_road.jpg           Oast House Archive
+                                     CC BY-SA 2.0
+                                     https://commons.wikimedia.org/wiki/File:Road_construction_works_-_geograph.org.uk_-_4455606.jpg
+
+assets/media/real_road2.jpg          Sgt. Isaac Copeland
+                                     Public domain
+                                     https://commons.wikimedia.org/wiki/File:Caterpillar_D6D_Bulldozer.jpg
+
+assets/media/real_wet.jpg            Ermell
+                                     CC BY-SA 4.0
+                                     https://commons.wikimedia.org/wiki/File:Ebing_CAT_D6N_LGP_im_Wasser-20160831-RM-110532.jpg
+
+Site artwork (not third-party photography):
+  assets/media/attach-ripper-real.jpg
+  assets/media/coverage.jpg
+  assets/media/gal_01_strip.jpg
+  assets/media/mach_d6r.jpg
+  assets/media/mach_d7r.jpg
+  assets/media/mach_d8r.jpg
+  assets/media/work_winter.jpg

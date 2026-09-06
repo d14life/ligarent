@@ -101,14 +101,6 @@
 
 /* ── closing call over the yard photograph ────────────────────────────────── */
 .cta2{position:relative;overflow:hidden;padding-block:clamp(74px,11vh,140px)}
-.cta2__bg{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  filter:brightness(.34) saturate(.9);z-index:0;
-}
-.cta2::after{
-  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(90deg,rgba(8,8,10,.94),rgba(8,8,10,.6) 58%,rgba(8,8,10,.82));
-}
 .cta2__inner{position:relative;z-index:2;max-width:var(--maxw)}
 .cta2__inner .lede{margin:16px 0 28px}
 
@@ -501,3 +493,103 @@ section.sec::before,.cta2::before{
 @media (max-aspect-ratio:13/10){
   .hero__mark{position:relative;top:auto;margin:4px 0 -6px}
 }
+
+
+/* ═══════════ section backgrounds: real machines, blurred ═════════════════
+   A photograph of a real machine behind every major section. Blurred hard so a
+   1500px file fills any screen, flattened so there is no hot patch of sky for a
+   headline to land on, and small enough that all six weigh ~133 KB together.
+
+   The scrim is two numbers per section, --s-top and --s-mid, and both were
+   found by measurement rather than taste. The copy is a muted grey, so the
+   paper behind it has to stay under about 64 of 255 to hold 4.5:1 — and the
+   first build sat at 13-27, which is not a dim photograph, it is a black
+   rectangle. These values put the machines on screen at a measured 50-60. */
+#machines,#picker,#work,#coverage,#faq,#contact,.cta2{
+  background-repeat:no-repeat;
+  /* two layers, deliberately different. The scrim scrolls with the section so
+     its top and bottom stops always land on the section's own head and foot.
+     The photograph is pinned to the viewport, because `cover` on a 2 500px-tall
+     section scales a 1 000px image to about 3 800px wide and all you see is one
+     featureless grey patch — measured on #work, which is the tallest. Pinned, it
+     is always sized to the window and always reads as a machine. */
+  background-attachment:scroll,fixed;
+  background-size:auto,cover;
+  background-position:center,center;
+  background-image:
+    linear-gradient(180deg,
+      rgba(10,10,12,var(--s-top)) 0,
+      rgba(10,10,12,var(--s-mid)) 22%,
+      rgba(10,10,12,var(--s-mid)) 78%,
+      rgba(10,10,12,var(--s-top)) 100%),
+    var(--s-img);
+}
+/* Fixed attachment is unreliable on touch browsers and costs a repaint per
+   scroll frame, so narrow screens get a different treatment — and the obvious
+   one does not work. At `100% auto` a 1000x667 photo is 260px tall on a 390px
+   screen, and a phone section runs to 3 000px, so 92% of it was plain black:
+   measured, and it looked like the background had failed to load. Instead the
+   photo is a deliberate 460px band at the head of each section, sized by height
+   so nothing is distorted, with the scrim fading it out in pixels rather than
+   percentages so the band always closes cleanly whatever the section height. */
+@media (max-width:900px),(prefers-reduced-motion:reduce){
+  #machines,#picker,#work,#coverage,#faq,#contact,.cta2{
+    background-attachment:scroll,scroll;
+    background-size:auto,auto 460px;
+    background-position:center,center top;
+    background-image:
+      linear-gradient(180deg,
+        rgba(10,10,12,var(--s-top)) 0,
+        rgba(10,10,12,var(--s-mid)) 150px,
+        rgba(10,10,12,.90) 380px,
+        rgba(10,10,12,1) 460px),
+      var(--s-img);
+  }
+}
+#machines{--s-top:.80;--s-mid:.62;--s-img:url('../media/bg-machines.jpg')}
+#picker  {--s-top:.80;--s-mid:.62;--s-img:url('../media/bg-picker.jpg')}
+#work    {--s-top:.80;--s-mid:.62;--s-img:url('../media/bg-work.jpg')}
+#coverage{--s-top:.80;--s-mid:.62;--s-img:url('../media/bg-coverage.jpg')}
+#faq     {--s-top:.80;--s-mid:.62;--s-img:url('../media/bg-faq.jpg')}
+#contact {--s-top:.80;--s-mid:.62;--s-img:url('../media/bg-contact.jpg')}
+.cta2    {--s-top:.78;--s-mid:.62;--s-img:url('../media/bg-cta.jpg');content-visibility:auto}
+
+/* Two sections put their copy in a left column and give the machine the whole
+   right half: the closing call, and the enquiry form. A scrim that leans down
+   has to darken the photograph everywhere to protect text that only occupies
+   one side — measured 3.77:1 on the closing call and 4.39:1 on the contact
+   e-mail, both under the 4.5 floor. Leaning it sideways instead protects the
+   column and leaves the machine bright where nothing is written over it. */
+#contact,.cta2{
+  background-image:
+    linear-gradient(90deg,rgba(10,10,12,.91) 0,rgba(10,10,12,.82) 46%,rgba(10,10,12,.40) 100%),
+    linear-gradient(180deg,
+      rgba(10,10,12,var(--s-top)) 0,
+      rgba(10,10,12,0) 24%,
+      rgba(10,10,12,0) 76%,
+      rgba(10,10,12,var(--s-top)) 100%),
+    var(--s-img);
+  background-size:auto,auto,cover;
+  background-position:center,center,center;
+  background-attachment:scroll,scroll,fixed;
+}
+@media (max-width:900px),(prefers-reduced-motion:reduce){
+  /* narrow layouts stack the column over the photo, so the sideways scrim would
+     protect nothing — these take the same head band as every other section */
+  #contact,.cta2{
+    background-image:
+      linear-gradient(180deg,
+        rgba(10,10,12,var(--s-top)) 0,
+        rgba(10,10,12,var(--s-mid)) 150px,
+        rgba(10,10,12,.90) 380px,
+        rgba(10,10,12,1) 460px),
+      var(--s-img);
+    background-size:auto,auto 460px;
+    background-position:center,center top;
+    background-attachment:scroll,scroll;
+  }
+}
+
+/* the coverage section used to be a see-through scrim over the film; the film
+   is gone, so it takes a photograph like the rest */
+.sec--film{background:none}

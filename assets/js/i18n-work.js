@@ -26,7 +26,8 @@ en: {
   'work.11.b': 'Building and reworking stockpiles — sand, aggregate, overburden. A blade shifts and shapes bulk faster than a loader can.',
   'work.12.t': 'Quarry floors and benches',
   'work.12.b': 'Haul ramps, drill pads, cleaning up benches. Rock work is a D8R and a single-shank ripper, not a smaller machine trying.',
-  'foot.credits': 'Photographs and time-lapse frames on this site include openly licensed images from Wikimedia Commons; per-image credits in the source.'
+  'foot.credits': 'Photographs on this site are openly licensed images from Wikimedia Commons.',
+  'foot.credits.link': 'Photo credits'
 },
 ru: {
   'dz.eyebrow': 'В работе',
@@ -50,7 +51,8 @@ ru: {
   'work.11.b': 'Формирование и переработка штабелей: песок, щебень, вскрыша. Отвал двигает и планирует объём быстрее, чем это сделает погрузчик.',
   'work.12.t': 'Карьер и уступы',
   'work.12.b': 'Съезды, площадки под бурение, зачистка уступов. Скала — это D8R с однозубым рыхлителем, а не машина поменьше «на пробу».',
-  'foot.credits': 'Среди фотографий и кадров таймлапсов на сайте есть свободно лицензированные материалы с Wikimedia Commons; ссылки на авторов — в исходниках.'
+  'foot.credits': 'Фотографии на сайте — свободно лицензированные материалы с Wikimedia Commons.',
+  'foot.credits.link': 'Авторы фотографий'
 },
 es: {
   'dz.eyebrow': 'En obra',
@@ -74,7 +76,8 @@ es: {
   'work.11.b': 'Formar y remover acopios: arena, árido, recubrimiento. Una hoja mueve y perfila volumen más rápido que una cargadora.',
   'work.12.t': 'Plazas y bancos de cantera',
   'work.12.b': 'Rampas, plataformas de perforación, limpieza de bancos. La roca es un D8R con ripper de un diente, no una máquina menor intentándolo.',
-  'foot.credits': 'Las fotografías y los fotogramas de time-lapse del sitio incluyen material con licencia libre de Wikimedia Commons; créditos por imagen en el código fuente.'
+  'foot.credits': 'Las fotografías del sitio son material con licencia libre de Wikimedia Commons.',
+  'foot.credits.link': 'Créditos fotográficos'
 },
 fr: {
   'dz.eyebrow': 'Sur le chantier',
@@ -98,7 +101,8 @@ fr: {
   'work.11.b': 'Constituer et reprendre les stocks : sable, granulats, découverte. Une lame déplace et règle le volume plus vite qu’une chargeuse.',
   'work.12.t': 'Carreaux et gradins de carrière',
   'work.12.b': 'Rampes, plateformes de forage, nettoyage des gradins. La roche, c’est un D8R et un ripper monodent, pas une machine plus petite qui essaie.',
-  'foot.credits': 'Les photographies et images de time-lapse du site comprennent des documents sous licence libre de Wikimedia Commons ; crédits par image dans les sources.'
+  'foot.credits': 'Les photographies du site sont des documents sous licence libre de Wikimedia Commons.',
+  'foot.credits.link': 'Crédits photo'
 },
 tt: {
   'dz.eyebrow': 'Эштә',
@@ -122,7 +126,8 @@ tt: {
   'work.11.b': 'Штабельләрне өю һәм эшкәртү: ком, щебень, өске катлам. Отвал күләмне погрузчиктан тизрәк күчерә һәм тигезли.',
   'work.12.t': 'Карьер һәм уступлар',
   'work.12.b': 'Төшү юллары, борау мәйданчыклары, уступларны чистарту. Таш — ул бер тешле рыхлительле D8R, кечерәк машина түгел.',
-  'foot.credits': 'Сайттагы фотолар һәм таймлапс кадрлары арасында Wikimedia Commons’ның ирекле лицензияле материаллары бар; авторлар — чыганак кодта.'
+  'foot.credits': 'Сайттагы фотолар — Wikimedia Commons’ның ирекле лицензияле материаллары.',
+  'foot.credits.link': 'Фото авторлары'
 },
 zh: {
   'dz.eyebrow': '施工中',
@@ -146,6 +151,7 @@ zh: {
   'work.11.b': '堆料与倒料：砂、骨料、剥离土。推土板挪动和整形的速度比装载机更快。',
   'work.12.t': '采场底板与台阶',
   'work.12.b': '运输坡道、钻孔平台、台阶清理。岩石作业靠 D8R 加单齿松土器，不是让小机器硬上。',
-  'foot.credits': '本站照片与延时摄影截图包含来自 Wikimedia Commons 的开放许可素材；逐图署名见源码。'
+  'foot.credits': '本站照片为来自 Wikimedia Commons 的开放许可素材。',
+  'foot.credits.link': '照片署名'
 }
 };
