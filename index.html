@@ -36,21 +36,6 @@ window.LIGARENT_CONFIG = {
   // published dimensions; loader-wheel.glb is the wheel loader that was
   // supplied first, kept so you can switch back with one line.
   // 'still' shows heroStill; 'video' loads heroVideo. One line to swap.
-  // The hero cycles these six real films, one after the other, for ever. Each
-  // has a light copy for phones and slow lines. Sources and licences are in
-  // source/HERO-FILMS-CREDITS.txt; all are CC BY.
-  // hero-0 is a light opener: the loading screen waits for the FIRST film,
-  // and the 642 KB one took 23 seconds through the tunnel. 253 KB gets the
-  // page up; the HD films follow behind it.
-  heroFilms    : ['./assets/media/hero-0.mp4', './assets/media/hero-2.mp4',
-                  './assets/media/hero-3.mp4', './assets/media/hero-4.mp4',
-                  './assets/media/hero-5.mp4', './assets/media/hero-6.mp4'],
-  heroFilmsSm  : ['./assets/media/hero-0.mp4', './assets/media/hero-2-sm.mp4',
-                  './assets/media/hero-3-sm.mp4', './assets/media/hero-4-sm.mp4',
-                  './assets/media/hero-5-sm.mp4', './assets/media/hero-6-sm.mp4'],
-  // the road-earthworks film was dropped at the owner's request. The opener is
-  // now cut from the clearing-machine film, so the first thing on screen is
-  // what the rotation actually opens with.
   leadEndpoint : '/api/lead',
   phone        : '+7 700 000 00 00',
   whatsapp     : '+7 700 000 00 00',
@@ -131,7 +116,7 @@ window.LIGARENT_CONFIG = {
     var MIN_MS = 1000;
     var MAX_MS = 12000;
     var started = Date.now();
-    var total = 4, done_ = 0;
+    var total = 3, done_ = 0;
 
     function bump(label) {
       done_++;
@@ -155,19 +140,8 @@ window.LIGARENT_CONFIG = {
       new Promise(function (r) { setTimeout(r, 2500); })]) : Promise.resolve())
       .then(function () { bump('type'); });
 
-    /* the hero film: wait until it has enough buffered to play, not until the
-       whole file is down — faststart means that is a second or two, not five
-       megabytes */
-    var film = new Promise(function (r) {
-      var t0 = Date.now();
-      (function poll() {
-        var v = document.getElementById('bgVideo');
-        if (v && v.readyState >= 3) return r();
-        if (Date.now() - t0 > 7000) return r();
-        setTimeout(poll, 120);
-      })();
-    }).then(function () { bump('film'); });
-
+    /* the hero film job used to live here. With the film gone it polled a
+       missing element and timed out, adding seven seconds to every visit. */
     /* everything else the page pulls in: stylesheets, scripts, eager images.
        The visitor asked to be shown a finished page, not a page assembling
        itself, so the screen holds for this too — with its own cap. */
@@ -179,7 +153,7 @@ window.LIGARENT_CONFIG = {
       new Promise(function (r) { setTimeout(r, 8000); })
     ]).then(function () { bump('assets'); });
 
-    Promise.all([parsed, fonts, film, everything]).then(function () {
+    Promise.all([parsed, fonts, everything]).then(function () {
       var left = MIN_MS - (Date.now() - started);
       setTimeout(finish, left > 0 ? left : 0);
     });
@@ -204,10 +178,8 @@ window.LIGARENT_CONFIG = {
 
 <!-- ══════════════════ fixed stage: 3D model, then video ══════════════════ -->
 <div class="scene" aria-hidden="true">
-  <!-- Real footage only. The generated clip went on 2026-09-06 and the still
-       photograph went with it at the owner's request: the hero is the film,
-       and until it arrives the scene's own dark ground stands in. -->
-  <video id="bgVideo" class="scene__video" muted autoplay playsinline preload="auto"></video>
+  <!-- No film here any more. The hero is the name: see .hero__mark below.
+       The films are kept in source/ if they are ever wanted back. -->
   <div class="scene__veil"></div>
   <div class="scene__loading">Loading</div>
 </div>
@@ -271,7 +243,29 @@ window.LIGARENT_CONFIG = {
 
   <!-- ─────────────────────────── hero ──────────────────────────────────── -->
   <section id="hero" data-stage="hero" class="hero">
-    <div class="hero__ghost" aria-hidden="true" data-plow="0.35"><span data-i18n="brand.split1">LIGA</span><span data-i18n="brand.split2">RENT</span></div>
+    <div class="hero__mark" aria-hidden="true">
+      <svg viewBox="0 0 1400 250" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="wmSweep" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0"   stop-color="#ffe9a8" stop-opacity="0"/>
+            <stop offset=".45" stop-color="#fff3cd" stop-opacity="1"/>
+            <stop offset=".55" stop-color="#fff3cd" stop-opacity="1"/>
+            <stop offset="1"   stop-color="#ffe9a8" stop-opacity="0"/>
+          </linearGradient>
+          <!-- userSpaceOnUse: the default bounding-box units size the mask
+               region around the moving rect, which put the letters outside it
+               and left the sweep invisible. -->
+          <mask id="wmMask" maskUnits="userSpaceOnUse" x="0" y="0" width="1400" height="250">
+            <text class="wm wm--fill" x="26" y="176">LIGA</text>
+            <text class="wm wm--fill" x="1374" y="176" text-anchor="end">RENT</text>
+          </mask>
+        </defs>
+        <text class="wm wm--draw wm--a" x="26" y="176">LIGA</text>
+        <text class="wm wm--draw wm--b" x="1374" y="176" text-anchor="end">RENT</text>
+        <rect class="wm__sweep" x="-620" y="0" width="560" height="250"
+              fill="url(#wmSweep)" mask="url(#wmMask)"/>
+      </svg>
+    </div>
     <div class="hero__inner">
       <p class="eyebrow" data-plow="0.5" data-i18n="hero.eyebrow">Bulldozer rental · operator included · 24/7</p>
       <h1 class="h-xl" data-plow="2.4">
@@ -341,21 +335,6 @@ window.LIGARENT_CONFIG = {
 
 
 
-      <div class="sec__sub rise">
-        <p class="eyebrow"><svg class="eb-ico" aria-hidden="true"><use href="#i-cone"/></svg><span data-i18n="dz.eyebrow">On the job</span></p>
-        <h3 class="h-md" data-i18n="dz.title">A Cat D9L on the dirt</h3>
-        <p class="lede" data-i18n="dz.sub"></p>
-      </div>
-      <figure class="dozerbox rise">
-        <div class="dozerbox__frame">
-          <video class="dozerbox__v" data-lazyvideo muted loop playsinline preload="none"
-                 poster="./assets/media/dozer-clip-poster.jpg" width="640" height="480">
-            <source media="(max-width: 900px)" src="./assets/media/dozer-clip-sm.mp4" type="video/mp4">
-            <source src="./assets/media/dozer-clip.mp4" type="video/mp4">
-          </video>
-        </div>
-        <figcaption class="dozerbox__src" data-i18n="dz.credit"></figcaption>
-      </figure>
 
     </div>
   </section>

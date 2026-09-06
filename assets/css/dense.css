@@ -421,3 +421,52 @@ section.sec::before,.cta2::before{
   margin-top:10px;font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;
   color:var(--fg-3);
 }
+
+
+/* ═══════════ the name, as the hero ═══════════════════════════════════════
+   The films came out at the owner's request and the wordmark took their place.
+   It draws itself in outline, fills faintly, then a light runs across the
+   letters every few seconds — masked to the glyphs, so nothing sweeps across
+   the empty background. All CSS: no script, no video, nothing to download. */
+.hero__mark{
+  position:absolute;left:0;right:0;top:16vh;z-index:0;
+  pointer-events:none;user-select:none;
+}
+/* no overflow: the glyphs used to spill past the viewBox and get cut off
+   by the window edge — the L and the T were both losing a stroke */
+.hero__mark svg{width:100%;height:auto;display:block;overflow:hidden}
+
+.wm{
+  font-family:var(--f-display);font-weight:800;font-style:italic;
+  font-size:168px;letter-spacing:-.03em;
+}
+.wm--draw{
+  fill:transparent;
+  stroke-width:2;
+  stroke-dasharray:2800;stroke-dashoffset:2800;
+  animation:wmDraw 2s cubic-bezier(.33,0,.15,1) forwards,
+            wmFill 1.1s ease forwards;
+}
+.wm--a{stroke:rgba(249,176,0,.78);--wmfill:rgba(249,176,0,.12);animation-delay:.15s,1.5s}
+.wm--b{stroke:rgba(255,255,255,.40);--wmfill:rgba(255,255,255,.07);animation-delay:.5s,1.9s}
+@keyframes wmDraw{to{stroke-dashoffset:0}}
+@keyframes wmFill{to{fill:var(--wmfill)}}
+
+.wm--fill{fill:#fff}                 /* the mask: white = the sweep shows here */
+.wm__sweep{
+  animation:wmSweep 7s cubic-bezier(.5,0,.5,1) 3s infinite;
+  opacity:.85;
+}
+@keyframes wmSweep{
+  0%   {transform:translateX(0)}
+  38%  {transform:translateX(2080px)}
+  100% {transform:translateX(2080px)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .wm--draw{animation:none;stroke-dashoffset:0;fill:var(--wmfill)}
+  .wm__sweep{animation:none;opacity:0}
+}
+@media (max-aspect-ratio:13/10){
+  .hero__mark{top:auto;bottom:auto;position:relative;margin:6px 0 -10px}
+}
