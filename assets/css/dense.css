@@ -422,8 +422,15 @@ section.sec::before,.cta2::before{
    still, a jolt every few seconds, and a light running through the fill. All
    CSS, nothing downloaded. Reduced motion gets the finished state, still. */
 .hero__mark{
-  position:absolute;left:0;right:0;top:9vh;z-index:0;
-  display:flex;justify-content:space-between;align-items:flex-start;
+  position:absolute;left:0;right:0;top:8vh;z-index:0;
+  /* The two halves used to be pushed to opposite edges with space-between. On a
+     narrow window that reads as one wordmark; on a 2 000px one the letters stop
+     growing at 340px and all that widens is the hole between them, so the hero
+     looked like a page with a missing image in the middle. Centred, LIGA and
+     RENT lock up as the single word the header logo already uses. Measured: the
+     joined mark is 1 247px at 1920 and 2560, and fits at every width down to
+     390 once the minimum size comes down by six pixels. */
+  display:flex;justify-content:center;align-items:flex-start;
   padding-inline:calc(var(--gut) * .45);
   pointer-events:none;user-select:none;white-space:nowrap;
 }
@@ -433,12 +440,12 @@ section.sec::before,.cta2::before{
 .ltr{
   display:block;
   font-family:var(--f-display);font-weight:800;font-style:italic;
-  font-size:clamp(104px,22.5vw,340px);line-height:.8;letter-spacing:-.045em;
+  font-size:clamp(98px,22.5vw,340px);line-height:.8;letter-spacing:-.045em;
   /* stroke draws the letter, the gradient fill is what the light runs through */
   color:transparent;
-  -webkit-text-stroke:2.5px rgba(249,176,0,.82);
+  -webkit-text-stroke:2.5px rgba(249,176,0,.58);
   background-image:linear-gradient(100deg,
-    rgba(249,176,0,.10) 0 42%, rgba(255,243,205,.92) 50%, rgba(249,176,0,.10) 58% 100%);
+    rgba(249,176,0,.07) 0 42%, rgba(255,243,205,.90) 50%, rgba(249,176,0,.07) 58% 100%);
   background-size:320% 100%;
   -webkit-background-clip:text;background-clip:text;
   animation:
@@ -447,9 +454,9 @@ section.sec::before,.cta2::before{
     wmShine 7s linear infinite;
   transform-origin:50% 100%;
 }
-.wmw--b .ltr{-webkit-text-stroke-color:rgba(255,255,255,.5);
+.wmw--b .ltr{-webkit-text-stroke-color:rgba(255,255,255,.34);
   background-image:linear-gradient(100deg,
-    rgba(255,255,255,.06) 0 42%, rgba(255,255,255,.85) 50%, rgba(255,255,255,.06) 58% 100%);}
+    rgba(255,255,255,.04) 0 42%, rgba(255,255,255,.82) 50%, rgba(255,255,255,.04) 58% 100%);}
 
 /* each letter lands, drifts and shines on its own clock */
 .wmw--a .ltr:nth-child(1){animation-delay:.10s,0s,0s}
@@ -553,6 +560,29 @@ section.sec::before,.cta2::before{
 #faq     {--s-top:.80;--s-mid:.62;--s-img:url('../media/bg-faq.jpg')}
 #contact {--s-top:.80;--s-mid:.62;--s-img:url('../media/bg-contact.jpg')}
 .cta2    {--s-top:.78;--s-mid:.62;--s-img:url('../media/bg-cta.jpg');content-visibility:auto}
+
+/* The hero was the one section left on plain black, and it is the first thing
+   anyone sees — so it read as a page whose images had failed to load. It takes
+   a photograph like the rest, but its scrim runs the other way up: the copy is
+   pinned to the BOTTOM of the hero (justify-content:flex-end), while the top
+   holds only the outlined wordmark, which needs no protection at all. So the
+   photograph is left open at the top and the scrim closes over the bottom. */
+#hero{
+  background-repeat:no-repeat;
+  background-attachment:scroll,fixed;
+  background-size:auto,cover;
+  background-position:center,center;
+  background-image:
+    linear-gradient(180deg,
+      rgba(10,10,12,.50) 0,
+      rgba(10,10,12,.56) 34%,
+      rgba(10,10,12,.88) 74%,
+      rgba(10,10,12,.95) 100%),
+    url('../media/bg-hero.jpg');
+}
+@media (max-width:900px),(prefers-reduced-motion:reduce){
+  #hero{background-attachment:scroll,scroll}
+}
 
 /* Two sections put their copy in a left column and give the machine the whole
    right half: the closing call, and the enquiry form. A scrim that leans down

@@ -619,7 +619,13 @@ html:not([data-stage="hero"]) .brand svg{height:32px}
 /* Right-hand spec HUD, only while the machines section owns the screen.
    It is display:none below 1600px — the 1280px content column plus gutters
    leaves no clear space for it, and it sat on top of the machine photo. */
-.hud{
+/* aside.hud, not .hud: the panel also carries .glass, and glass.css sets
+   position:relative on it. Same specificity, later stylesheet, so the HUD lost
+   its fixed positioning and dropped into normal flow — where, being display:block
+   from 1600px up, it pushed the entire page down 164px and left a black band
+   above the hero. Only visible on wide screens, which is why it survived every
+   check at 1440. */
+aside.hud{
   display:none;
   position:fixed;right:var(--gut);top:50%;translate:0 -50%;z-index:50;
   width:196px;padding:16px 18px;border-radius:var(--r);
@@ -633,7 +639,7 @@ html:not([data-stage="hero"]) .brand svg{height:32px}
 .hud dt{font-size:12px;color:var(--fg-3)}
 .hud dd{margin:0;font-family:var(--f-display);font-weight:800;font-size:13.5px;color:var(--yellow)}
 
-@media (min-width:1600px){ .hud{display:block} }
+@media (min-width:1600px){ aside.hud{display:block} }
 
 /* floating request button */
 .fab{
