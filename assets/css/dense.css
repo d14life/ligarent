@@ -448,33 +448,62 @@ section.sec::before,.cta2::before{
     rgba(249,176,0,.07) 0 42%, rgba(255,243,205,.90) 50%, rgba(249,176,0,.07) 58% 100%);
   background-size:320% 100%;
   -webkit-background-clip:text;background-clip:text;
+  /* Ambient life only — the entrance is the decode, driven from app.js, and it
+     runs before these start. Held paused so a letter cannot drift sideways
+     while it is still churning through scrap characters. */
   animation:
-    wmSlam 1.05s cubic-bezier(.2,1.5,.3,1) backwards,
     wmDrift 5.5s ease-in-out infinite,
     wmShine 7s linear infinite;
+  animation-play-state:paused;
   transform-origin:50% 100%;
 }
 .wmw--b .ltr{-webkit-text-stroke-color:rgba(255,255,255,.34);
   background-image:linear-gradient(100deg,
     rgba(255,255,255,.04) 0 42%, rgba(255,255,255,.82) 50%, rgba(255,255,255,.04) 58% 100%);}
 
-/* each letter lands, drifts and shines on its own clock */
-.wmw--a .ltr:nth-child(1){animation-delay:.10s,0s,0s}
-.wmw--a .ltr:nth-child(2){animation-delay:.20s,.7s,.4s}
-.wmw--a .ltr:nth-child(3){animation-delay:.30s,1.4s,.8s}
-.wmw--a .ltr:nth-child(4){animation-delay:.40s,2.1s,1.2s}
-.wmw--b .ltr:nth-child(1){animation-delay:.50s,.4s,1.6s}
-.wmw--b .ltr:nth-child(2){animation-delay:.60s,1.1s,2.0s}
-.wmw--b .ltr:nth-child(3){animation-delay:.70s,1.8s,2.4s}
-.wmw--b .ltr:nth-child(4){animation-delay:.80s,2.5s,2.8s}
+/* each letter drifts and shines on its own clock, so the word never pulses as
+   one block. Two delays now, not three: the slam is gone. */
+.hero__mark.is-live .ltr{animation-play-state:running}
+.wmw--a .ltr:nth-child(1){animation-delay:0s,0s}
+.wmw--a .ltr:nth-child(2){animation-delay:.7s,.4s}
+.wmw--a .ltr:nth-child(3){animation-delay:1.4s,.8s}
+.wmw--a .ltr:nth-child(4){animation-delay:2.1s,1.2s}
+.wmw--b .ltr:nth-child(1){animation-delay:.4s,1.6s}
+.wmw--b .ltr:nth-child(2){animation-delay:1.1s,2.0s}
+.wmw--b .ltr:nth-child(3){animation-delay:1.8s,2.4s}
+.wmw--b .ltr:nth-child(4){animation-delay:2.5s,2.8s}
 
-@keyframes wmSlam{
-  0%   {transform:translateY(-130%) rotate(-16deg) scale(1.5);opacity:0}
-  55%  {opacity:1}
-  70%  {transform:translateY(9%) rotate(3deg) scale(.94)}
-  85%  {transform:translateY(-4%) rotate(-1.5deg) scale(1.02)}
-  100% {transform:none;opacity:1}
+/* ── the strike ────────────────────────────────────────────────────────────
+   Once the word has decoded it comes on like a tube striking: two false
+   starts, a dead beat, then it holds. steps(1,end) is what makes it read as
+   electrical — interpolated, the same keyframes are just a wobbly fade.
+
+   The glow is a filter on the wrapper rather than a text-shadow on eight
+   letters, so it is one rasterised layer instead of eight, and it is dropped
+   entirely at the end: leaving a permanent drop-shadow over letters that drift
+   forever means re-rasterising the filter on every frame of the ambient loop. */
+@keyframes wmStrike{
+  0%  {opacity:0;filter:none}
+  7%  {opacity:1;filter:drop-shadow(0 0 10px rgba(249,176,0,.50))}
+  11% {opacity:.16;filter:none}
+  19% {opacity:1;filter:drop-shadow(0 0 12px rgba(249,176,0,.55))}
+  26% {opacity:0;filter:none}
+  41% {opacity:0;filter:none}
+  47% {opacity:1;filter:drop-shadow(0 0 14px rgba(249,176,0,.58))}
+  52% {opacity:.22;filter:none}
+  58% {opacity:1;filter:drop-shadow(0 0 17px rgba(249,176,0,.62))}
+  64% {opacity:.10;filter:none}
+  73% {opacity:1;filter:drop-shadow(0 0 24px rgba(249,176,0,.60)) drop-shadow(0 0 48px rgba(249,176,0,.30))}
+  88% {opacity:1;filter:drop-shadow(0 0 16px rgba(249,176,0,.34))}
+  100%{opacity:1;filter:none}
 }
+.hero__mark.is-striking{animation:wmStrike 1.15s steps(1,end) 1 both}
+
+/* the wordmark is invisible until the decode starts, so nothing flashes in its
+   finished state behind the loading screen */
+.hero__mark{opacity:0}
+.hero__mark.is-striking,.hero__mark.is-live,.hero__mark.is-decoding{opacity:1}
+
 @keyframes wmDrift{
   0%,100%{transform:translateY(0) rotate(0deg)}
   25%    {transform:translateY(-12px) rotate(-1.6deg)}

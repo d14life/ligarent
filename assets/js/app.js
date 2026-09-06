@@ -589,6 +589,63 @@ function boot() {
   // tools and models are kept under source/3d-removed if it ever comes back.
   // The hero is the animated wordmark now; no film to start.
 
+  /* ── the wordmark arrives: decode, then strike ────────────────────────────
+     Two effects the owner picked, in sequence. The letters churn through scrap
+     characters and lock left to right, then the whole word comes on like a
+     neon tube striking. After that the CSS ambient loop takes over.
+
+     Three details that are not optional:
+
+     - It waits for `ligarent:booted`. Started on DOMContentLoaded it plays out
+       behind the loading screen and is over before anyone sees the page.
+     - Every slot is pinned to its finished glyph width for the duration of the
+       decode. Roboto Condensed is proportional, so an I standing in for a G
+       shifts every letter after it and the whole lockup shuffles sideways on
+       each frame. The pins come off at the end, or a resize leaves them stale
+       against a font-size that follows the viewport.
+     - Scrap characters stay inside A-Z and 0-9, which the latin subset in
+       assets/fonts definitely carries. A glyph that is not in the subset falls
+       back to another family mid-churn and the letter jumps. */
+  function initWordmark() {
+    const mark = document.querySelector('.hero__mark');
+    if (!mark) return;
+    const letters = [...mark.querySelectorAll('.ltr')];
+    if (!letters.length) return;
+
+    const finals = letters.map(l => l.textContent);
+    const live = () => { mark.classList.remove('is-striking'); mark.classList.add('is-live'); };
+
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { live(); return; }
+
+    const SCRAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const CHURN = 45;      // ms between scrap characters
+    const STAGGER = 110;   // ms between one letter locking and the next
+    const HEAD = 240;      // ms before the first letter locks
+
+    for (const l of letters) l.style.width = l.getBoundingClientRect().width + 'px';
+    mark.classList.add('is-decoding');
+
+    letters.forEach((l, i) => {
+      const spin = setInterval(() => {
+        l.textContent = SCRAP[(Math.random() * SCRAP.length) | 0];
+      }, CHURN);
+      setTimeout(() => {
+        clearInterval(spin);
+        l.textContent = finals[i];
+      }, HEAD + i * STAGGER);
+    });
+
+    setTimeout(() => {
+      letters.forEach((l, i) => { l.textContent = finals[i]; l.style.width = ''; });
+      mark.classList.remove('is-decoding');
+      mark.classList.add('is-striking');
+      mark.addEventListener('animationend', live, { once: true });
+      setTimeout(live, 1600);            // in case the animation never reports
+    }, HEAD + letters.length * STAGGER + 120);
+  }
+  addEventListener('ligarent:booted', initWordmark, { once: true });
+  if (document.documentElement.dataset.boot === 'done') initWordmark();
+
   document.body.classList.add('is-ready', 'no-3d');
 
   setTranslator(t);
