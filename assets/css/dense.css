@@ -340,7 +340,11 @@
   /* min-height must be beaten explicitly: the base rule is 100svh and this
      block used to sit above it, leaving 390px of dead black between the film
      band and the headline. Seen in a browser, not in a test. */
-  .hero{min-height:0;padding-top:calc(56.25vw + 20px);padding-bottom:40px;
+  /* padding-top used to be calc(56.25vw + 20px) — a 16:9 band reserved for the
+     hero film. The film went; the reservation stayed, and it was measured at
+     222-262px of dead black above the wordmark on every phone size. All that is
+     needed now is clearance under the fixed header. */
+  .hero{min-height:0;padding-top:88px;padding-bottom:40px;
     justify-content:flex-start}
   .hero__ghost{opacity:.5}
 }
@@ -527,7 +531,14 @@ section.sec::before,.cta2::before{
   .ltr{background-position:50% 0}
 }
 @media (max-aspect-ratio:13/10){
-  .hero__mark{position:relative;top:auto;margin:4px 0 -6px}
+  /* On a portrait phone the wordmark joins the flow instead of floating over
+     the hero. Two measured corrections: the 98px floor in the base clamp made
+     the joined lockup 360px wide at every phone size, which overflows a 360px
+     screen by 18px and leaves 6px of margin on a 390px one, so phones size
+     purely on viewport width; and the -6px bottom margin put the eyebrow
+     through the letters rather than under them. */
+  .hero__mark{position:relative;top:auto;margin:2px 0 16px}
+  .hero__mark .ltr{font-size:min(23.5vw,340px)}
 }
 
 

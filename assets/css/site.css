@@ -690,20 +690,33 @@ html[data-menu="open"] .burger span::after{transform:translateY(-5.5px) rotate(-
 }
 @media (max-width:900px){
   .burger{display:grid}
+  /* The panel is sized to the viewport explicitly, NOT with inset:0.
+     .topbar carries a backdrop-filter, and a filtered ancestor becomes the
+     containing block for a position:fixed descendant — so inset:0 resolved
+     against the 75px header and the panel came out 390x74. The links then
+     overflowed a box that short and landed loose over the hero with no
+     background behind them, which is exactly how it looked on a phone. */
   .topbar__nav{
-    position:fixed;inset:0;top:0;
-    flex-direction:column;justify-content:center;gap:6px;
+    position:fixed;left:0;right:0;top:0;
+    height:100svh;max-height:100svh;overflow-y:auto;overscroll-behavior:contain;
+    flex-direction:column;justify-content:center;align-items:flex-start;gap:2px;
     background:rgba(8,8,10,.97);backdrop-filter:blur(20px);
-    margin:0;padding:var(--gut);
+    margin:0;padding:96px var(--gut) var(--gut);
     opacity:0;visibility:hidden;transform:none;
     transition:opacity .34s var(--ease),visibility 0s linear .34s;
     z-index:-1;
   }
+  /* while the panel is up the page behind it must not scroll */
+  html[data-menu="open"],html[data-menu="open"] body{overflow:hidden}
   html[data-menu="open"] .topbar__nav{opacity:1;visibility:visible;transition-delay:0s;z-index:1}
   /* the stage machine must not fight the burger menu on small screens */
   html[data-menu="open"] .topbar__nav.is-out{opacity:1;visibility:visible;filter:none;transform:none;pointer-events:auto}
-  .topbar__nav a{font-size:23px;font-family:var(--f-display);font-weight:800;
-                 font-style:italic;color:var(--fg);padding:11px 0}
+  .topbar__nav a{font-size:clamp(26px,7.6vw,34px);font-family:var(--f-display);
+                 font-weight:800;font-style:italic;color:var(--fg);
+                 padding:13px 0;width:100%;letter-spacing:-.01em;
+                 border-bottom:1px solid rgba(255,255,255,.07)}
+  .topbar__nav a:last-child{border-bottom:0}
+  .topbar__nav a[aria-current="true"]{color:var(--yellow)}
   .topbar__nav a::after{display:none}
   .topbar__tools .btn{display:none}
   .cards,.band__grid,.steps,.gal,.specs{grid-template-columns:1fr}
