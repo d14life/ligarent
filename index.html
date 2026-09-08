@@ -1,787 +1,273 @@
 <!doctype html>
-<html lang="ru" data-stage="hero" data-menu="closed">
+<html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ЛИГАРЕНТ — аренда бульдозеров Cat® с оператором</title>
-<meta name="description" content="Три гусеничных бульдозера Caterpillar: D6R, D7R и D8R, от 19 до 38 тонн. С оператором, топливом и полным обслуживанием.">
-<meta name="theme-color" content="#0a0a0b">
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="LIGARENT — Cat® bulldozer rental">
-<meta property="og:description" content="Three Caterpillar dozers, 20 to 39 tonnes, with operator. Tell us the job and we will size the machine.">
-<meta property="og:image" content="./assets/media/gal_01_strip.jpg">
-
-<link rel="icon" href="./assets/img/favicon.svg" type="image/svg+xml">
+<meta name="description" content="Три гусеничных бульдозера Caterpillar: D6R, D7R и D8R, от 19 до 38 тонн. С оператором, топливом и обслуживанием.">
+<meta name="theme-color" content="#0d0d0d">
 <link rel="stylesheet" href="./assets/css/fonts.css">
-<link rel="stylesheet" href="./assets/css/site.css">
-<link rel="stylesheet" href="./assets/css/glass.css">
-<link rel="stylesheet" href="./assets/css/sections.css">
-<link rel="stylesheet" href="./assets/css/dense.css">
-  <link rel="stylesheet" href="./assets/css/perf.css">
-<link rel="preload" as="font" type="font/woff2" crossorigin
-      href="./assets/fonts/RobotoCondensed-700i-latin-0e95b0b7.woff2">
-
-
-<script>
-/* ─────────────────────────────────────────────────────────────────────────
-   EDIT THIS BLOCK. Everything the client needs to change lives here.
-   leadEndpoint  — where the enquiry form POSTs. See api/README.md.
-                   Deploy api/telegram-worker.js (Cloudflare, free) or
-                   api/telegram.php (any PHP host) and paste its URL here.
-   The Telegram bot token is NEVER put in this file. It lives on the server.
-   ───────────────────────────────────────────────────────────────────────── */
-window.LIGARENT_CONFIG = {
-  // The machine in the 3D hero. dozer.glb is a Cat-style D6R built to the
-  // published dimensions; loader-wheel.glb is the wheel loader that was
-  // supplied first, kept so you can switch back with one line.
-  // 'still' shows heroStill; 'video' loads heroVideo. One line to swap.
-  leadEndpoint : '/api/lead',
-  phone        : '+7 700 000 00 00',
-  whatsapp     : '+7 700 000 00 00',
-  email        : 'info@ligarent.com',
-  address      : '',
-  // Leave a rate empty to show "on request" instead of a number.
-  rates        : { shift: '', week: '', month: '' }
-};
-</script>
+<link rel="stylesheet" href="./assets/css/minimal.css">
+<link rel="preload" as="image" href="./assets/media/bg-hero.jpg">
+<script type="module" src="./assets/js/min.js"></script>
 </head>
-
 <body>
 
-<style id="boot-style">
-  .boot{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;
-    align-items:center;justify-content:center;gap:26px;background:#0a0a0b;
-    font-family:'Roboto Condensed',Arial,sans-serif;color:#f4f4f2;
-    transition:opacity .5s ease,visibility 0s linear .5s}
-  html[data-boot="done"] .boot{opacity:0;visibility:hidden;pointer-events:none}
-  .boot__mark{width:150px;height:auto}
-  .boot__bar{width:min(230px,52vw);height:2px;background:rgba(255,255,255,.14);
-    overflow:hidden;border-radius:2px}
-  .boot__bar i{display:block;height:100%;width:38%;background:#f9b000;border-radius:2px;
-    animation:bootslide 1.15s cubic-bezier(.5,0,.5,1) infinite}
-  .boot__txt{font-family:ui-monospace,'Cascadia Mono',Menlo,monospace;font-size:12px;
-    letter-spacing:.22em;text-transform:uppercase;color:#86868b}
-  @keyframes bootslide{0%{transform:translateX(-115%)}100%{transform:translateX(330%)}}
-  @media (prefers-reduced-motion:reduce){
-    .boot__bar i{animation:none;width:100%}
-  }
-</style>
-<!-- site marks: cone, hard hat, barrier. Drawn as paths so they take the
-     brand colour and cost nothing to load. -->
-<svg class="lg-defs" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0">
-  <symbol id="i-cone" viewBox="0 0 24 24">
-    <path d="M11 2h2l6 17H5L11 2Z" fill="currentColor" opacity=".92"/>
-    <path d="M8.6 11h6.8l.7 2H7.9l.7-2ZM7.2 15h9.6l.7 2H6.5l.7-2Z" fill="#141416"/>
-    <rect x="3" y="19.5" width="18" height="2.5" rx="1.2" fill="currentColor"/>
-  </symbol>
-  <symbol id="i-helmet" viewBox="0 0 24 24">
-    <path d="M12 4c3.9 0 7 3.1 7 7v3H5v-3c0-3.9 3.1-7 7-7Z" fill="currentColor" opacity=".92"/>
-    <path d="M10 4.6c0-.9.9-1.6 2-1.6s2 .7 2 1.6" stroke="currentColor" stroke-width="1.6" fill="none"/>
-    <rect x="2.5" y="14" width="19" height="3" rx="1.5" fill="currentColor"/>
-  </symbol>
-  <symbol id="i-barrier" viewBox="0 0 24 24">
-    <rect x="2" y="7" width="20" height="6" rx="1" fill="currentColor" opacity=".92"/>
-    <path d="M5 7 2 13M10 7 7 13M15 7l-3 6M20 7l-3 6" stroke="#141416" stroke-width="2"/>
-    <path d="M4 13v8M20 13v8" stroke="currentColor" stroke-width="2"/>
-  </symbol>
-</svg>
-<div class="boot" id="boot" role="status" aria-live="polite" aria-label="Loading">
-  <svg class="boot__mark" viewBox="0 0 470 122" role="img" aria-label="LIGARENT">
-    <rect x="0" y="0" width="470" height="9" fill="#c8102e"/>
-    <rect x="0" y="9" width="470" height="104" fill="#ffcd11"/>
-    <rect x="0" y="113" width="470" height="9" fill="#c8102e"/>
-    <text x="235" y="88" text-anchor="middle" fill="#0a0a0b"
-          font-family="Roboto Condensed, Archivo, system-ui, sans-serif"
-          font-size="80" font-weight="700" font-style="italic" letter-spacing="-1">LIGARENT</text>
-  </svg>
-  <div class="boot__bar"><i></i></div>
-  <p class="boot__txt" id="bootTxt">Загрузка</p>
-</div>
-<script>
-  /* A real loading screen: it holds until the page is genuinely ready to look
-     at, and it counts what it is waiting for.
-
-     The first version dismissed on fonts + DOM only, and the hero film was
-     deliberately started AFTER it cleared — so the screen lifted onto a dark
-     hero and the film arrived seconds later. That is the "not fully loaded"
-     everyone saw. The film is now part of what the loader waits for, so when
-     it lifts there is a picture moving.
-
-     Held to a minimum beat so it never flashes, and capped so a slow link or a
-     failed asset can never trap anyone behind it. */
-  (function () {
-    var html = document.documentElement;
-    var txt = null;
-    var MIN_MS = 1000;
-    var MAX_MS = 12000;
-    var started = Date.now();
-    var total = 3, done_ = 0;
-
-    function bump(label) {
-      done_++;
-      var pct = Math.min(99, Math.round(done_ / total * 100));
-      if (!txt) txt = document.getElementById('bootTxt');
-      if (txt) txt.setAttribute('data-pct', pct + '%');
-    }
-    function finish() {
-      if (html.dataset.boot === 'done') return;
-      html.dataset.boot = 'done';
-      window.dispatchEvent(new Event('ligarent:booted'));
-      setTimeout(function () { var b = document.getElementById('boot'); if (b) b.remove(); }, 700);
-    }
-
-    var parsed = new Promise(function (r) {
-      if (document.readyState !== 'loading') return r();
-      document.addEventListener('DOMContentLoaded', r, { once: true });
-    }).then(function () { bump('markup'); });
-
-    var fonts = (document.fonts ? Promise.race([document.fonts.ready,
-      new Promise(function (r) { setTimeout(r, 2500); })]) : Promise.resolve())
-      .then(function () { bump('type'); });
-
-    /* the hero film job used to live here. With the film gone it polled a
-       missing element and timed out, adding seven seconds to every visit. */
-    /* everything else the page pulls in: stylesheets, scripts, eager images.
-       The visitor asked to be shown a finished page, not a page assembling
-       itself, so the screen holds for this too — with its own cap. */
-    var everything = Promise.race([
-      new Promise(function (r) {
-        if (document.readyState === 'complete') return r();
-        window.addEventListener('load', r, { once: true });
-      }),
-      new Promise(function (r) { setTimeout(r, 8000); })
-    ]).then(function () { bump('assets'); });
-
-    Promise.all([parsed, fonts, everything]).then(function () {
-      var left = MIN_MS - (Date.now() - started);
-      setTimeout(finish, left > 0 ? left : 0);
-    });
-    setTimeout(finish, MAX_MS);
-  })();
-</script>
-
-
-<!-- displacement map for the liquid-glass refraction; one filter, reused -->
-<svg class="lg-defs" aria-hidden="true" focusable="false">
-  <filter id="lgRefract" x="-12%" y="-12%" width="124%" height="124%">
-    <feTurbulence type="fractalNoise" baseFrequency="0.0016 0.0028"
-                  numOctaves="2" seed="7" result="n">
-      <animate attributeName="baseFrequency" dur="26s"
-               values="0.0016 0.0028;0.0022 0.0019;0.0016 0.0028" repeatCount="indefinite"/>
-    </feTurbulence>
-    <feDisplacementMap in="SourceGraphic" in2="n" scale="14"
-                       xChannelSelector="R" yChannelSelector="G"/>
-  </filter>
-</svg>
-
-
-<!-- ══════════════════ fixed stage: 3D model, then video ══════════════════ -->
-<div class="scene" aria-hidden="true">
-  <!-- No film here any more. The hero is the name: see .hero__mark below.
-       The films are kept in source/ if they are ever wanted back. -->
-  <div class="scene__veil"></div>
-  <div class="scene__loading">Loading</div>
-</div>
-
-<!-- ═══════════════════════════ top bar ═══════════════════════════════════ -->
-<header class="topbar">
-  <a class="brand" href="#hero" aria-label="LIGARENT — home">
-    <svg viewBox="0 0 470 122" role="img" aria-label="LIGARENT">
-      <rect x="0" y="0"     width="470" height="9"   fill="#c8102e"/>
-      <rect x="0" y="9"     width="470" height="104" fill="#ffcd11"/>
-      <rect x="0" y="113"   width="470" height="9"   fill="#c8102e"/>
-      <text x="235" y="88" text-anchor="middle" fill="#0a0a0b"
-            font-family="Roboto Condensed, Archivo, system-ui, sans-serif"
-            font-size="80" font-weight="700" font-style="italic"
-            letter-spacing="-1">LIGARENT</text>
-    </svg>
-  </a>
-
-  <nav class="topbar__nav" data-show=" machines picker work coverage faq contact" aria-label="Sections">
-    <a href="#machines" data-i18n="nav.machines">Machines</a>
-    <a href="#picker"   data-i18n="nav.picker">Which machine</a>
-    <a href="#work"     data-i18n="nav.work">What we do</a>
-    <a href="#faq"      data-i18n="nav.faq">FAQ</a>
-    <a href="#contact"  data-i18n="nav.contact">Get a price</a>
-  </nav>
-
-  <div class="topbar__tools">
-    <div class="lang" data-open="false">
-      <button class="lang__btn glass glass--thin glass--pill" type="button" aria-haspopup="listbox" aria-label="Language">
-        <span class="lang__cur">EN</span>
-        <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1.6 6 6.5l5-4.9"/></svg>
-      </button>
-      <div class="lang__menu glass glass--solid" role="listbox"></div>
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="logo" href="#" aria-label="LIGARENT">
+      <svg viewBox="0 0 470 122" role="img" aria-label="LIGARENT">
+        <rect x="0" y="0" width="470" height="9" fill="#c8102e"/>
+        <rect x="0" y="9" width="470" height="104" fill="#ffcd11"/>
+        <rect x="0" y="113" width="470" height="9" fill="#c8102e"/>
+        <text x="235" y="88" text-anchor="middle" fill="#0a0a0b"
+              font-family="Roboto Condensed, system-ui, sans-serif"
+              font-size="80" font-weight="700" font-style="italic" letter-spacing="-1">LIGARENT</text>
+      </svg>
+    </a>
+    <nav aria-label="Разделы">
+      <a href="#machines" data-i18n="nav.machines">Машины</a>
+      <a href="#picker" data-i18n="nav.picker">Какая машина</a>
+      <a href="#work" data-i18n="nav.work">Что делаем</a>
+      <a href="#coverage" data-i18n="nav.coverage">География</a>
+      <a href="#faq" data-i18n="nav.faq">Вопросы</a>
+    </nav>
+    <div class="hdr__r">
+      <div class="lang" id="lang">
+        <button class="lang__btn" id="langBtn" type="button" aria-haspopup="true">
+          <span id="langNow">RU</span>
+        </button>
+        <div class="lang__menu" id="langMenu">
+          <button type="button" data-l="ru">Русский</button>
+          <button type="button" data-l="en">English</button>
+          <button type="button" data-l="es">Español</button>
+          <button type="button" data-l="fr">Français</button>
+          <button type="button" data-l="tt">Татарча</button>
+          <button type="button" data-l="zh">中文</button>
+        </div>
+      </div>
+      <a class="btn btn--y btn--sm" href="#contact" data-i18n="nav.cta">Оставить заявку</a>
+      <button class="burger" id="burger" type="button" aria-label="Меню"><i></i><i></i><i></i></button>
     </div>
-    <a class="btn btn--sm" href="#contact" data-show="hero machines picker work coverage faq contact" data-i18n="nav.cta">Request a machine</a>
-    <button class="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span></button>
   </div>
-
-  <div class="topbar__progress"></div>
 </header>
 
-<!-- ════════════════════ persistent scroll-driven chrome ═══════════════════ -->
-<nav class="rail" data-show=" machines picker work coverage faq contact" aria-label="Page index">
-  <a href="#machines"><i></i><span data-i18n="nav.machines">Machines</span></a>
-  <a href="#picker"><i></i><span data-i18n="nav.picker">Which machine</span></a>
-  <a href="#work"><i></i><span data-i18n="nav.work">What we do</span></a>
-  <a href="#coverage"><i></i><span data-i18n="nav.coverage">Coverage</span></a>
-  <a href="#faq"><i></i><span data-i18n="nav.faq">FAQ</span></a>
-</nav>
+<main>
 
-<aside class="hud glass glass--refract" data-show="machines" aria-hidden="true">
-  <h4 id="hudName">Cat D6R</h4>
-  <dl id="hudList"></dl>
-</aside>
-
-<div id="liquidFab" class="liquid-fab" aria-hidden="true"></div>
-<a class="btn fab glass--pill" href="#contact" data-show=" machines picker work coverage faq contact" data-i18n="nav.cta">Request a machine</a>
-
-<!-- ═════════════════════════════ page ════════════════════════════════════ -->
-<main class="page">
-
-  <!-- ─────────────────────────── hero ──────────────────────────────────── -->
-  <section id="hero" data-stage="hero" class="hero">
-    <!-- Eight letters, not two words: each one lands on its own, keeps
-         drifting out of phase with its neighbours, and the pair jolts every
-         few seconds. Per-letter spans are the only way to drive them
-         separately. All CSS — nothing here is downloaded. -->
-    <div class="hero__mark" aria-hidden="true">
-      <span class="wmw wmw--a"><span class="ltr">L</span><span class="ltr">I</span><span class="ltr">G</span><span class="ltr">A</span></span>
-      <span class="wmw wmw--b"><span class="ltr">R</span><span class="ltr">E</span><span class="ltr">N</span><span class="ltr">T</span></span>
-    </div>
-    <div class="hero__inner">
-      <p class="eyebrow" data-plow="0.5" data-i18n="hero.eyebrow">Bulldozer rental · operator included · 24/7</p>
-      <h1 class="h-xl" data-plow="2.4">
-        <span class="l1" data-i18n="hero.t1">Move the earth.</span>
-        <span class="l2" data-i18n="hero.t2">On schedule.</span>
-      </h1>
-      <p class="lede hero__sub" data-plow="1.3" data-i18n="hero.sub">Three Caterpillar dozers, twenty to thirty-nine tonnes.</p>
-      <div class="hero__cta" data-plow="0.8">
-        <a class="btn" href="#contact">
-          <span data-i18n="hero.cta">Request a machine</span>
-          <svg class="btn__arrow" width="15" height="11" viewBox="0 0 15 11" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M1 5.5h12M9 1l4.4 4.5L9 10"/></svg>
-        </a>
-        <a class="btn btn--ghost" href="#machines" data-i18n="hero.cta2">See the machines</a>
+  <section class="hero" id="hero">
+    <img class="hero__bg" src="./assets/media/bg-hero.jpg" alt="" width="1920" height="1080">
+    <div class="wrap hero__in">
+      <p class="eyebrow" data-i18n="hero.eyebrow">ЛИГА · РЕНТ</p>
+      <h1 class="h-xl"><span data-i18n="hero.t1">Двигаем грунт.</span> <em data-i18n="hero.t2">В срок.</em></h1>
+      <p class="lede" data-i18n="hero.sub">Три бульдозера Caterpillar.</p>
+      <div class="hero__cta">
+        <a class="btn btn--y" href="#contact" data-i18n="hero.cta">Оставить заявку</a>
+        <a class="btn btn--ghost" href="#machines" data-i18n="hero.cta2">Смотреть машины</a>
       </div>
-      <div class="hero__scroll" data-show="hero">
-        <i></i><span data-i18n="hero.scroll">Scroll</span>
+      <div class="hazard" role="presentation"></div>
+      <div class="stats">
+        <div><b class="num" data-i18n="stat.1.v">3</b><span data-i18n="stat.1.l">Бульдозера Cat® в парке</span></div>
+        <div><b class="num" data-i18n="stat.2.v">19–38 т</b><span data-i18n="stat.2.l">Диапазон рабочей массы</span></div>
+        <div><b class="num" data-i18n="stat.3.v">&lt; 2 ч</b><span data-i18n="stat.3.l">Обычный срок до цены</span></div>
+        <div><b class="num" data-i18n="stat.4.v">24/7</b><span data-i18n="stat.4.l">Диспетчер и замена при поломке</span></div>
       </div>
     </div>
-    
   </section>
 
-  <div class="stats" data-plow="3.2">
-    <div class="stat"><b data-i18n="stat.1.v">3</b><span data-i18n="stat.1.l">Cat® dozers in the yard</span></div>
-    <div class="stat"><b data-i18n="stat.2.v">20–39 t</b><span data-i18n="stat.2.l">Operating weight range</span></div>
-    <div class="stat"><b data-i18n="stat.3.v">&lt; 2 h</b><span data-i18n="stat.3.l">Typical time to a price</span></div>
-    <div class="stat"><b data-i18n="stat.4.v">24/7</b><span data-i18n="stat.4.l">Dispatch and breakdown cover</span></div>
-  </div>
-
-
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee__track">
-      <span data-i18n="mq.1"></span><i></i><span data-i18n="mq.2"></span><i></i><span data-i18n="mq.3"></span><i></i><span data-i18n="mq.4"></span><i></i><span data-i18n="mq.5"></span><i></i><span data-i18n="mq.6"></span><i></i><span data-i18n="mq.7"></span><i></i><span data-i18n="mq.8"></span><i></i><span data-i18n="mq.9"></span><i></i><span data-i18n="mq.10"></span><i></i><span data-i18n="mq.1"></span><i></i><span data-i18n="mq.2"></span><i></i><span data-i18n="mq.3"></span><i></i><span data-i18n="mq.4"></span><i></i><span data-i18n="mq.5"></span><i></i><span data-i18n="mq.6"></span><i></i><span data-i18n="mq.7"></span><i></i><span data-i18n="mq.8"></span><i></i><span data-i18n="mq.9"></span><i></i><span data-i18n="mq.10"></span><i></i>
-    </div>
-  </div>
-
-
-
-  <!-- ──── the machines, and all three compared ────────────────────────────── -->
-  <section id="machines" data-stage="machines" class="sec sec--solid">
+  <section class="sec" id="machines">
     <div class="wrap">
-      <div class="sec__head rise">
-        <p class="eyebrow"><svg class="eb-ico" aria-hidden="true"><use href="#i-cone"/></svg><span data-i18n="mach.eyebrow">The machines</span></p>
-        <h2 class="h-lg" data-i18n="mach.title">Three dozers. One of them is yours this week.</h2>
-        <p class="lede" data-i18n="mach.sub">We are not a broker.</p>
+      <div class="sec__head">
+        <p class="eyebrow" data-i18n="mach.eyebrow">Машины</p>
+        <h2 class="h-lg" data-i18n="mach.title">Три бульдозера.</h2>
+        <p class="lede" data-i18n="mach.sub">Мы не посредник.</p>
       </div>
-
-      <div class="mach__pick rise" id="machPick" role="tablist" aria-label="Choose a machine"></div>
-
-      <div class="mach__grid">
-        <div class="mach__body rise">
-          <h3 class="h-md" id="machName">Cat D6R</h3>
-          <p class="lede" id="machBlurb"></p>
-          <dl class="specs" id="machSpecs"></dl>
-          <dl class="mach__use">
-            <dt data-i18n="mach.best">Best for</dt>
-            <dd id="machUse"></dd>
-          </dl>
-          <p class="tiny" style="margin-top:18px" data-i18n="mach.note">Figures are the manufacturer's published specification.</p>
-          <p style="margin-top:22px">
-            <a class="btn" href="#contact"><span data-i18n="mach.cta">Request this machine</span></a>
-          </p>
-        </div>
-        <div class="mach__viz rise">
-          <span class="mach__tag" id="machTag">Cat D6R</span>
-        </div>
-      </div>
-
-
-
-
+      <div class="fleet" id="fleet"></div>
+      <p class="note" data-i18n="mach.note">Данные по спецификации производителя.</p>
     </div>
   </section>
 
-  <!-- ──── which machine do I need, and what it costs ──────────────────────── -->
-  <section id="picker" data-stage="picker" class="sec sec--solid">
+  <section class="sec sec--paper" id="picker">
     <div class="wrap">
-      <div class="sec__head rise">
-        <p class="eyebrow"><svg class="eb-ico" aria-hidden="true"><use href="#i-cone"/></svg><span data-i18n="pick.eyebrow">Which machine</span></p>
-        <h2 class="h-lg" data-i18n="pick.title">Answer four questions, get a machine</h2>
-        <p class="lede" data-i18n="pick.sub">Same four the dispatcher would ask.</p>
+      <div class="sec__head">
+        <p class="eyebrow" data-i18n="pick.eyebrow">Какая машина</p>
+        <h2 class="h-lg" data-i18n="pick.title">Четыре вопроса — и машина подобрана</h2>
+        <p class="lede" data-i18n="pick.sub">Те же четыре, которые задал бы диспетчер.</p>
       </div>
-
-      <div class="picker rise" id="pickerBox">
-        <div class="picker__qs">
-          <fieldset class="picker__q">
-            <legend data-i18n="pick.q.job">What is the work?</legend>
-            <div class="picker__opts">
-              <button type="button" class="picker__opt glass glass--thin" data-group="job" data-value="clear"  aria-pressed="false" data-i18n="pick.job.clear"></button>
-              <button type="button" class="picker__opt glass glass--thin" data-group="job" data-value="bulk"   aria-pressed="false" data-i18n="pick.job.bulk"></button>
-              <button type="button" class="picker__opt glass glass--thin" data-group="job" data-value="road"   aria-pressed="false" data-i18n="pick.job.road"></button>
-              <button type="button" class="picker__opt glass glass--thin" data-group="job" data-value="rock"   aria-pressed="false" data-i18n="pick.job.rock"></button>
-              <button type="button" class="picker__opt glass glass--thin" data-group="job" data-value="finish" aria-pressed="false" data-i18n="pick.job.finish"></button>
-            </div>
-          </fieldset>
-          <fieldset class="picker__q">
-            <legend data-i18n="pick.q.area">How big is the site?</legend>
-            <div class="picker__opts">
-              <button type="button" class="picker__opt glass glass--thin" data-group="area" data-value="small"  aria-pressed="false" data-i18n="pick.area.small"></button>
-              <button type="button" class="picker__opt glass glass--thin" data-group="area" data-value="medium" aria-pressed="false" data-i18n="pick.area.medium"></button>
-              <button type="button" class="picker__opt glass glass--thin" data-group="area" data-value="large"  aria-pressed="false" data-i18n="pick.area.large"></button>
-            </div>
-          </fieldset>
-          <fieldset class="picker__q">
-            <legend data-i18n="pick.q.ground">What is the ground like?</legend>
-            <div class="picker__opts">
-              <button type="button" class="picker__opt glass glass--thin" data-group="ground" data-value="soft"  aria-pressed="false" data-i18n="pick.ground.soft"></button>
-              <button type="button" class="picker__opt glass glass--thin" data-group="ground" data-value="mixed" aria-pressed="false" data-i18n="pick.ground.mixed"></button>
-              <button type="button" class="picker__opt glass glass--thin" data-group="ground" data-value="hard"  aria-pressed="false" data-i18n="pick.ground.hard"></button>
-            </div>
-          </fieldset>
-          <fieldset class="picker__q">
-            <legend data-i18n="pick.q.access">How is the access?</legend>
-            <div class="picker__opts">
-              <button type="button" class="picker__opt glass glass--thin" data-group="access" data-value="tight" aria-pressed="false" data-i18n="pick.access.tight"></button>
-              <button type="button" class="picker__opt glass glass--thin" data-group="access" data-value="open"  aria-pressed="false" data-i18n="pick.access.open"></button>
-            </div>
-          </fieldset>
-          <button type="button" class="picker__reset" id="pickerReset" data-i18n="pick.reset">Start again</button>
-        </div>
-
-        <div class="picker__out glass glass--refract glass--track" id="pickerResult" data-state="partial"></div>
+      <div class="pick">
+        <div id="picker-qs"></div>
+        <div class="result" id="picker-out"></div>
       </div>
-
-      <div class="sec__sub rise">
-        <p class="eyebrow"><svg class="eb-ico" aria-hidden="true"><use href="#i-cone"/></svg><span data-i18n="rate.eyebrow">Rates</span></p>
-        <h3 class="h-md" data-i18n="rate.title">What it costs, and what is in the price</h3>
-        <p class="lede" data-i18n="rate.sub"></p>
-      </div>
-      <div class="rates rise">
-        <div class="rate glass glass--lift glass--track">
-          <h3 data-i18n="rate.shift.n">Per shift</h3>
-          <p class="rate__p" data-rate="shift"></p>
-          <p class="rate__d" data-i18n="rate.shift.d"></p>
-        </div>
-        <div class="rate glass glass--lift glass--track">
-          <h3 data-i18n="rate.week.n">Per week</h3>
-          <p class="rate__p" data-rate="week"></p>
-          <p class="rate__d" data-i18n="rate.week.d"></p>
-        </div>
-        <div class="rate glass glass--lift glass--track">
-          <h3 data-i18n="rate.month.n">Per month</h3>
-          <p class="rate__p" data-rate="month"></p>
-          <p class="rate__d" data-i18n="rate.month.d"></p>
-        </div>
-      </div>
-      <div class="rate__lists rise">
-        <div class="rate__list">
-          <h4 data-i18n="rate.inc.title">In the rate</h4>
-          <ul>
-            <li data-i18n="rate.inc.1"></li>
-            <li data-i18n="rate.inc.2"></li>
-            <li data-i18n="rate.inc.3"></li>
-            <li data-i18n="rate.inc.4"></li>
-            <li data-i18n="rate.inc.5"></li>
-          </ul>
-        </div>
-        <div class="rate__list rate__list--out">
-          <h4 data-i18n="rate.exc.title">Charged separately</h4>
-          <ul>
-            <li data-i18n="rate.exc.1"></li>
-            <li data-i18n="rate.exc.2"></li>
-          </ul>
-        </div>
-      </div>
-      <p class="tiny" style="margin-top:22px" data-i18n="rate.note"></p>
     </div>
   </section>
 
-  <!-- ──── what we do, in photographs, with before / after ─────────────────── -->
-  <section id="work" data-stage="work" class="sec sec--solid">
+  <section class="sec" id="work">
     <div class="wrap">
-      <div class="sec__head rise">
-        <p class="eyebrow"><svg class="eb-ico" aria-hidden="true"><use href="#i-barrier"/></svg><span data-i18n="work.eyebrow">What we do</span></p>
-        <h2 class="h-lg" data-i18n="work.title">If it needs pushing, cutting, ripping or levelling</h2>
-        <p class="lede" data-i18n="work.sub">Six jobs that make up most of our year.</p>
+      <div class="sec__head">
+        <p class="eyebrow" data-i18n="work.eyebrow">Что делаем</p>
+        <h2 class="h-lg" data-i18n="work.title">Если надо толкать, срезать, рыхлить или ровнять</h2>
+        <p class="lede" data-i18n="work.sub">Двенадцать видов грунта, одна база.</p>
       </div>
-      <div class="cards rise">
-        <article class="card card--img">
-          <figure class="card__img" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABUOEBIQDRUSERIYFhUZHzQiHx0dH0AuMCY0TENQT0tDSUhUXnlmVFlyWkhJaY9qcnyAh4iHUWWUn5ODnXmEh4L/2wBDARYYGB8cHz4iIj6CVklWgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoL/wAARCAAPABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCpZsY5FcdjXSxaxBtAbqK5GMnpnipe3BNZq6K5UdaNXtSOTiiuNct0zRVXYuU//9k=)"><img src="./assets/media/real_grade_road.jpg" alt="" loading="lazy" decoding="async" width="1600" height="1100"></figure>
-          <div class="card__body"><p class="card__n">01</p><h3 data-i18n="work.1.t"></h3><p data-i18n="work.1.b"></p></div>
-        </article>
-        <article class="card card--img">
-          <figure class="card__img" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABUOEBIQDRUSERIYFhUZHzQiHx0dH0AuMCY0TENQT0tDSUhUXnlmVFlyWkhJaY9qcnyAh4iHUWWUn5ODnXmEh4L/2wBDARYYGB8cHz4iIj6CVklWgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoL/wAARCAARABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC293bxLuLiq8uoJNxCcnFYtwSzcdBUlm2xi2KzlUdrmkaSNiG/i2/vAQw60VnblTJ659aKSqsHRKklS2/3aKKzex0Lcc/Siiikimf/2Q==)"><img src="./assets/media/real_bulk.jpg" alt="" loading="lazy" decoding="async" width="1600" height="1100"></figure>
-          <div class="card__body"><p class="card__n">02</p><h3 data-i18n="work.2.t"></h3><p data-i18n="work.2.b"></p></div>
-        </article>
-        <article class="card card--img">
-          <figure class="card__img" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABUOEBIQDRUSERIYFhUZHzQiHx0dH0AuMCY0TENQT0tDSUhUXnlmVFlyWkhJaY9qcnyAh4iHUWWUn5ODnXmEh4L/2wBDARYYGB8cHz4iIj6CVklWgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoL/wAARCAAQABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBhLno9ILaeQbh0qYwKw4OKlhZ4htzuFZczL5UVGsbgjJ6UVqi4TGG4oo5mHKj/2Q==)"><img src="./assets/media/real_road.jpg" alt="" loading="lazy" decoding="async" width="1600" height="1100"></figure>
-          <div class="card__body"><p class="card__n">03</p><h3 data-i18n="work.3.t"></h3><p data-i18n="work.3.b"></p></div>
-        </article>
-        <article class="card card--img">
-          <figure class="card__img" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABUOEBIQDRUSERIYFhUZHzQiHx0dH0AuMCY0TENQT0tDSUhUXnlmVFlyWkhJaY9qcnyAh4iHUWWUn5ODnXmEh4L/2wBDARYYGB8cHz4iIj6CVklWgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoL/wAARCAAPABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDPXP8AdqaPkA4xmrq2+PlB470/7OrAA9ulPnkDiiJIjiirax4GKKrnZPKj/9k=)"><img src="./assets/media/real_bulk2.jpg" alt="" loading="lazy" decoding="async" width="1600" height="1100"></figure>
-          <div class="card__body"><p class="card__n">04</p><h3 data-i18n="work.4.t"></h3><p data-i18n="work.4.b"></p></div>
-        </article>
-        <article class="card card--img">
-          <figure class="card__img" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABUOEBIQDRUSERIYFhUZHzQiHx0dH0AuMCY0TENQT0tDSUhUXnlmVFlyWkhJaY9qcnyAh4iHUWWUn5ODnXmEh4L/2wBDARYYGB8cHz4iIj6CVklWgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoL/wAARCAASABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDQF/CFyAacL+Bh1rFifIIdc1FBATOxbIA6VPtJD5Ebcl2mcY4orNEyGQr2Hc0UvaSHyRG2/wB007+I0UVJRn3ZIZsGiiiqWxLP/9k=)"><img src="./assets/media/real_finish.jpg" alt="" loading="lazy" decoding="async" width="1600" height="1100"></figure>
-          <div class="card__body"><p class="card__n">05</p><h3 data-i18n="work.5.t"></h3><p data-i18n="work.5.b"></p></div>
-        </article>
-        <article class="card card--img">
-          <figure class="card__img" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABUOEBIQDRUSERIYFhUZHzQiHx0dH0AuMCY0TENQT0tDSUhUXnlmVFlyWkhJaY9qcnyAh4iHUWWUn5ODnXmEh4L/2wBDARYYGB8cHz4iIj6CVklWgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoL/wAARCAASABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDNtLQycsdo9TReBLUjYwYmpoQQMSZAqheMglYD5h2pe0k5WQ/ZxSLllIZwRgE0VmQSSRyZQkUVspysZOETo70DyzxWNgZPAoorCBtIiYfPRRRWpmf/2Q==)"><img src="./assets/media/work_winter.jpg" alt="" loading="lazy" decoding="async" width="1200" height="900"></figure>
-          <div class="card__body"><p class="card__n">06</p><h3 data-i18n="work.6.t"></h3><p data-i18n="work.6.b"></p></div>
-        </article>
-        <article class="card card--img">
-          <figure class="card__img" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABUOEBIQDRUSERIYFhUZHzQiHx0dH0AuMCY0TENQT0tDSUhUXnlmVFlyWkhJaY9qcnyAh4iHUWWUn5ODnXmEh4L/2wBDARYYGB8cHz4iIj6CVklWgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoL/wAARCAASABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCaSYL0BNCSBxkgioJTMH+QjFJ+/wAckc1i7I1VyR51XhTk0VBHCAxY9aKLBcsydaFoooe4LYTvRRRTEz//2Q==)"><img src="./assets/media/real_wet.jpg" alt="" loading="lazy" decoding="async" width="1600" height="1100"></figure>
-          <div class="card__body"><p class="card__n">07</p><h3 data-i18n="work.7.t"></h3><p data-i18n="work.7.b"></p></div>
-        </article>
-        <article class="card card--img">
-          <figure class="card__img" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABUOEBIQDRUSERIYFhUZHzQiHx0dH0AuMCY0TENQT0tDSUhUXnlmVFlyWkhJaY9qcnyAh4iHUWWUn5ODnXmEh4L/2wBDARYYGB8cHz4iIj6CVklWgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoL/wAARCAASABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDAQktWrbai0AAIziqkcKsuRwaXyyeAORUlWvuX55vtABHc0U2zCRjMi5Pais7DsQRVJ3ooqgJR0ooopAf/2Q==)"><img src="./assets/media/real_forest.jpg" alt="" loading="lazy" decoding="async" width="1600" height="1100"></figure>
-          <div class="card__body"><p class="card__n">08</p><h3 data-i18n="work.8.t"></h3><p data-i18n="work.8.b"></p></div>
-        </article>
-        <article class="card card--img">
-          <figure class="card__img" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABUOEBIQDRUSERIYFhUZHzQiHx0dH0AuMCY0TENQT0tDSUhUXnlmVFlyWkhJaY9qcnyAh4iHUWWUn5ODnXmEh4L/2wBDARYYGB8cHz4iIj6CVklWgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoL/wAARCAAPABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwB9pPMkYjMfAHGetUrk3r7lcEKTWwepbAzSgkrkgVLnJ6MOSKOXe3mTPyk0V1S+W/BQflRU3Hyn/9k=)"><img src="./assets/media/real_levee.jpg" alt="" loading="lazy" decoding="async" width="1600" height="1100"></figure>
-          <div class="card__body"><p class="card__n">09</p><h3 data-i18n="work.9.t"></h3><p data-i18n="work.9.b"></p></div>
-        </article>
-        <article class="card card--img">
-          <figure class="card__img" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABUOEBIQDRUSERIYFhUZHzQiHx0dH0AuMCY0TENQT0tDSUhUXnlmVFlyWkhJaY9qcnyAh4iHUWWUn5ODnXmEh4L/2wBDARYYGB8cHz4iIj6CVklWgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoL/wAARCAAPABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCZNUbyuUw1Ub6We5j2kjGelOVRSsoIzmsHUkbqnEzVjnh+7nHtRV8AMODRRzMPZo//2Q==)"><img src="./assets/media/real_debris.jpg" alt="" loading="lazy" decoding="async" width="1600" height="1100"></figure>
-          <div class="card__body"><p class="card__n">10</p><h3 data-i18n="work.10.t"></h3><p data-i18n="work.10.b"></p></div>
-        </article>
-        <article class="card card--img">
-          <figure class="card__img" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABUOEBIQDRUSERIYFhUZHzQiHx0dH0AuMCY0TENQT0tDSUhUXnlmVFlyWkhJaY9qcnyAh4iHUWWUn5ODnXmEh4L/2wBDARYYGB8cHz4iIj6CVklWgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoL/wAARCAANABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBovppcF2PFXbfWSm1JBn3rGDEDAoVR1rPmNOU3bjUGlGEOBRWPG7dM0UcwuU//2Q==)"><img src="./assets/media/real_rip.jpg" alt="" loading="lazy" decoding="async" width="1600" height="1100"></figure>
-          <div class="card__body"><p class="card__n">11</p><h3 data-i18n="work.11.t"></h3><p data-i18n="work.11.b"></p></div>
-        </article>
-        <article class="card card--img">
-          <figure class="card__img" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABUOEBIQDRUSERIYFhUZHzQiHx0dH0AuMCY0TENQT0tDSUhUXnlmVFlyWkhJaY9qcnyAh4iHUWWUn5ODnXmEh4L/2wBDARYYGB8cHz4iIj6CVklWgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoL/wAARCAAQABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDOwmaeIVxnFW4rYEjcoqyYkUY21XtJC5EZ6W6ntRWimwfw0U/aMXIj/9k=)"><img src="./assets/media/real_desert.jpg" alt="" loading="lazy" decoding="async" width="1600" height="1100"></figure>
-          <div class="card__body"><p class="card__n">12</p><h3 data-i18n="work.12.t"></h3><p data-i18n="work.12.b"></p></div>
-        </article>
+      <div class="work">
+        <article><span class="n">01</span><h3 data-i18n="work.1.t"></h3><p data-i18n="work.1.b"></p></article>
+        <article><span class="n">02</span><h3 data-i18n="work.2.t"></h3><p data-i18n="work.2.b"></p></article>
+        <article><span class="n">03</span><h3 data-i18n="work.3.t"></h3><p data-i18n="work.3.b"></p></article>
+        <article><span class="n">04</span><h3 data-i18n="work.4.t"></h3><p data-i18n="work.4.b"></p></article>
+        <article><span class="n">05</span><h3 data-i18n="work.5.t"></h3><p data-i18n="work.5.b"></p></article>
+        <article><span class="n">06</span><h3 data-i18n="work.6.t"></h3><p data-i18n="work.6.b"></p></article>
+        <article><span class="n">07</span><h3 data-i18n="work.7.t"></h3><p data-i18n="work.7.b"></p></article>
+        <article><span class="n">08</span><h3 data-i18n="work.8.t"></h3><p data-i18n="work.8.b"></p></article>
+        <article><span class="n">09</span><h3 data-i18n="work.9.t"></h3><p data-i18n="work.9.b"></p></article>
+        <article><span class="n">10</span><h3 data-i18n="work.10.t"></h3><p data-i18n="work.10.b"></p></article>
+        <article><span class="n">11</span><h3 data-i18n="work.11.t"></h3><p data-i18n="work.11.b"></p></article>
+        <article><span class="n">12</span><h3 data-i18n="work.12.t"></h3><p data-i18n="work.12.b"></p></article>
       </div>
-
     </div>
   </section>
 
-
-
-
-
-  <!-- ──── where the machines go ───────────────────────────────────────────── -->
-  <section id="coverage" data-stage="coverage" class="sec sec--solid cov-sec sec--film">
-    <div class="wrap cov">
-      <div class="rise">
-        <p class="eyebrow"><svg class="eb-ico" aria-hidden="true"><use href="#i-barrier"/></svg><span data-i18n="cov.eyebrow">Coverage</span></p>
-        <h2 class="h-lg" data-i18n="cov.title">Where the machines go</h2>
-        <p class="lede" style="margin-top:16px" data-i18n="cov.sub"></p>
-        <div class="cov__bands">
-          <div class="cov__band glass glass--thin"><h3 data-i18n="cov.1.t"></h3><p data-i18n="cov.1.b"></p></div>
-          <div class="cov__band glass glass--thin"><h3 data-i18n="cov.2.t"></h3><p data-i18n="cov.2.b"></p></div>
-          <div class="cov__band glass glass--thin"><h3 data-i18n="cov.3.t"></h3><p data-i18n="cov.3.b"></p></div>
-        </div>
-        <p class="tiny" style="margin-top:18px" data-i18n="cov.note"></p>
-      </div>
-      <figure class="cov__img rise">
-        <img src="./assets/media/coverage.jpg" alt="" loading="lazy" decoding="async"
-             width="1600" height="900">
-      </figure>
-    </div>
-  </section>
-
-
-
-  <!-- ──── what people ask before they book ────────────────────────────────── -->
-  <section id="faq" data-stage="faq" class="sec sec--solid">
+  <section class="sec sec--paper" id="coverage">
     <div class="wrap">
-      <div class="sec__head rise">
-        <p class="eyebrow"><svg class="eb-ico" aria-hidden="true"><use href="#i-helmet"/></svg><span data-i18n="faq.eyebrow">Questions</span></p>
-        <h2 class="h-lg" data-i18n="faq.title">What people ask before they book</h2>
+      <div class="sec__head">
+        <p class="eyebrow" data-i18n="cov.eyebrow">География</p>
+        <h2 class="h-lg" data-i18n="cov.title">Куда выезжают машины</h2>
+        <p class="lede" data-i18n="cov.sub">Перевозка входит в ставку до 100 км.</p>
       </div>
-      <div class="faq rise">
-        <div class="faq__item glass glass--thin" data-open="false">
-          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faqa1">
-            <span data-i18n="faq.1.q"></span>
-            <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg>
-          </button>
-          <div class="faq__a" id="faqa1"><p data-i18n="faq.1.a"></p></div>
+      <div class="cov">
+        <div>
+          <div class="band"><h3 data-i18n="cov.1.t"></h3><p data-i18n="cov.1.b"></p></div>
+          <div class="band"><h3 data-i18n="cov.2.t"></h3><p data-i18n="cov.2.b"></p></div>
+          <div class="band"><h3 data-i18n="cov.3.t"></h3><p data-i18n="cov.3.b"></p></div>
+          <p class="note" data-i18n="cov.note"></p>
         </div>
-        <div class="faq__item glass glass--thin" data-open="false">
-          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faqa2">
-            <span data-i18n="faq.2.q"></span>
-            <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg>
-          </button>
-          <div class="faq__a" id="faqa2"><p data-i18n="faq.2.a"></p></div>
-        </div>
-        <div class="faq__item glass glass--thin" data-open="false">
-          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faqa3">
-            <span data-i18n="faq.3.q"></span>
-            <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg>
-          </button>
-          <div class="faq__a" id="faqa3"><p data-i18n="faq.3.a"></p></div>
-        </div>
-        <div class="faq__item glass glass--thin" data-open="false">
-          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faqa4">
-            <span data-i18n="faq.4.q"></span>
-            <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg>
-          </button>
-          <div class="faq__a" id="faqa4"><p data-i18n="faq.4.a"></p></div>
-        </div>
-        <div class="faq__item glass glass--thin" data-open="false">
-          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faqa5">
-            <span data-i18n="faq.5.q"></span>
-            <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg>
-          </button>
-          <div class="faq__a" id="faqa5"><p data-i18n="faq.5.a"></p></div>
-        </div>
-        <div class="faq__item glass glass--thin" data-open="false">
-          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faqa6">
-            <span data-i18n="faq.6.q"></span>
-            <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg>
-          </button>
-          <div class="faq__a" id="faqa6"><p data-i18n="faq.6.a"></p></div>
-        </div>
-        <div class="faq__item glass glass--thin" data-open="false">
-          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faqa7">
-            <span data-i18n="saf.1.t"></span>
-            <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg>
-          </button>
-          <div class="faq__a" id="faqa7"><p data-i18n="saf.1.b"></p></div>
-        </div>
-        <div class="faq__item glass glass--thin" data-open="false">
-          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faqa8">
-            <span data-i18n="saf.2.t"></span>
-            <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg>
-          </button>
-          <div class="faq__a" id="faqa8"><p data-i18n="saf.2.b"></p></div>
-        </div>
-        <div class="faq__item glass glass--thin" data-open="false">
-          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faqa9">
-            <span data-i18n="saf.3.t"></span>
-            <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg>
-          </button>
-          <div class="faq__a" id="faqa9"><p data-i18n="saf.3.b"></p></div>
-        </div>
-        <div class="faq__item glass glass--thin" data-open="false">
-          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faqa10">
-            <span data-i18n="saf.4.t"></span>
-            <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg>
-          </button>
-          <div class="faq__a" id="faqa10"><p data-i18n="saf.4.b"></p></div>
+        <div class="cov__ph">
+          <img src="./assets/media/coverage.jpg" alt="" loading="lazy" width="1200" height="825">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ──── closing call ────────────────────────────────────────────────────── -->
-  <section class="cta2">
-    <div class="wrap cta2__inner rise">
-      <h2 class="h-lg" data-i18n="cta2.title">Tell us the job.</h2>
-      <p class="lede" data-i18n="cta2.sub"></p>
-      <a class="btn" href="#contact"><span data-i18n="cta2.btn">Get a price</span>
-        <svg class="btn__arrow" width="15" height="11" viewBox="0 0 15 11" fill="none"
-             stroke="currentColor" stroke-width="1.9"><path d="M1 5.5h12M9 1l4.4 4.5L9 10"/></svg>
-      </a>
-    </div>
-  </section>
-
-  <!-- ──── enquiry ─────────────────────────────────────────────────────────── -->
-  <section id="contact" data-stage="contact" class="sec sec--panel">
+  <section class="sec" id="faq">
     <div class="wrap">
-      <div class="contact">
-        <div class="rise">
-          <p class="eyebrow"><svg class="eb-ico" aria-hidden="true"><use href="#i-cone"/></svg><span data-i18n="form.eyebrow">Get a price</span></p>
-          <h2 class="h-lg" data-i18n="form.title">Tell us about the job</h2>
-          <p class="lede" style="margin-top:16px" data-i18n="form.sub">Five details is all it takes.</p>
+      <div class="sec__head">
+        <p class="eyebrow" data-i18n="faq.eyebrow">Вопросы</p>
+        <h2 class="h-lg" data-i18n="faq.title">О чём спрашивают до заказа</h2>
+      </div>
+      <div class="faq">
+        <details open><summary data-i18n="faq.1.q"></summary><p data-i18n="faq.1.a"></p></details>
+        <details><summary data-i18n="faq.2.q"></summary><p data-i18n="faq.2.a"></p></details>
+        <details><summary data-i18n="faq.3.q"></summary><p data-i18n="faq.3.a"></p></details>
+        <details><summary data-i18n="faq.4.q"></summary><p data-i18n="faq.4.a"></p></details>
+        <details><summary data-i18n="faq.5.q"></summary><p data-i18n="faq.5.a"></p></details>
+        <details><summary data-i18n="faq.6.q"></summary><p data-i18n="faq.6.a"></p></details>
+      </div>
+    </div>
+  </section>
 
-          <div class="direct">
-            <h4 class="tiny" style="letter-spacing:.14em;text-transform:uppercase" data-i18n="form.or">or reach us directly</h4>
-            <a data-tel data-fill="text" href="#"></a>
-            <a data-wa data-fill="text" href="#" target="_blank" rel="noopener"></a>
-            <a data-mail data-fill="text" href="#"></a>
+  <section class="cta">
+    <div class="wrap cta__in">
+      <div>
+        <h2 class="h-lg" data-i18n="cta2.title">Опишите задачу. Машину назовём мы.</h2>
+        <p class="lede" data-i18n="cta2.sub">Две минуты на отправку.</p>
+      </div>
+      <a class="btn" href="#contact" data-i18n="cta2.btn">Узнать цену</a>
+    </div>
+  </section>
+
+  <section class="sec sec--paper" id="contact">
+    <div class="wrap">
+      <div class="sec__head">
+        <p class="eyebrow" data-i18n="form.eyebrow">Узнать цену</p>
+        <h2 class="h-lg" data-i18n="form.title">Расскажите про объект</h2>
+        <p class="lede" data-i18n="form.sub">Пяти пунктов хватит, чтобы посчитать.</p>
+      </div>
+      <div class="form">
+        <form id="lead" class="form" style="display:contents" novalidate>
+          <div class="f-row">
+            <label for="f-name" data-i18n="form.name.l">Ваше имя</label>
+            <input id="f-name" name="name" type="text" data-i18n-ph="form.name.p" autocomplete="name">
           </div>
-        </div>
-
-        <form class="form rise glass glass--solid glass--track" id="lead" novalidate data-state="">
-          <div class="form__body">
-            <div class="field">
-              <label for="name" data-i18n="form.name.l">Your name</label>
-              <input id="name" name="name" type="text" autocomplete="name" data-i18n-attr="placeholder:form.name.p">
-            </div>
-
-            <div class="row">
-              <div class="field">
-                <label for="phone">
-                  <span data-i18n="form.phone.l">Contact phone</span><span class="req">*</span>
-                </label>
-                <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel"
-                       data-i18n-attr="placeholder:form.phone.p" required>
-                <p class="field__err"></p>
-              </div>
-              <div class="field">
-                <label for="wa">
-                  <span data-i18n="form.wa.l">WhatsApp number</span><span class="req">*</span>
-                </label>
-                <input id="wa" name="whatsapp" type="tel" inputmode="tel"
-                       data-i18n-attr="placeholder:form.wa.p" required>
-                <p class="field__err"></p>
-                <label class="check" for="waSame">
-                  <input type="checkbox" id="waSame" checked>
-                  <span data-i18n="form.wa.same">Same as my contact phone</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="job">
-                <span data-i18n="form.job.l">The job — and which dozer, if you know</span><span class="req">*</span>
-              </label>
-              <textarea id="job" name="job" rows="3" data-i18n-attr="placeholder:form.job.p" required></textarea>
-              <p class="field__err"></p>
-            </div>
-
-            <div class="field">
-              <label for="tons">
-                <span data-i18n="form.tons.l">Roughly what size machine</span><span class="req">*</span>
-              </label>
-              <select id="tons" name="tons" required>
-                <option value="" data-i18n="form.tons.p">Choose a weight class</option>
-                <option value="unsure" data-i18n="form.tons.0"></option>
-                <option value="19t"    data-i18n="form.tons.1"></option>
-                <option value="26t"    data-i18n="form.tons.2"></option>
-                <option value="38t"    data-i18n="form.tons.3"></option>
-                <option value="multi"  data-i18n="form.tons.4"></option>
-              </select>
-              <p class="field__err"></p>
-            </div>
-
-            <div class="field">
-              <label for="loc">
-                <span data-i18n="form.loc.l">Site location</span><span class="req">*</span>
-              </label>
-              <input id="loc" name="location" type="text" data-i18n-attr="placeholder:form.loc.p" required>
-              <p class="field__err"></p>
-            </div>
-
-            <div class="form__foot">
-              <button class="btn btn--wide" id="leadSubmit" type="submit">
-                <span data-i18n="form.submit">Send the enquiry</span>
-                <svg class="btn__arrow" width="15" height="11" viewBox="0 0 15 11" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M1 5.5h12M9 1l4.4 4.5L9 10"/></svg>
-              </button>
-              <p class="tiny form__consent" data-i18n="form.consent"></p>
-            </div>
+          <div class="f-row">
+            <label for="f-phone" data-i18n="form.phone.l">Контактный телефон</label>
+            <input id="f-phone" name="phone" type="tel" data-i18n-ph="form.phone.p" autocomplete="tel" required>
+            <span class="err" data-i18n="form.phone.bad">Укажите номер</span>
           </div>
-
-          <div class="form__state form__state--ok">
-            <div class="ico"><svg width="21" height="21" viewBox="0 0 21 21" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 11l4.6 4.6L17 6"/></svg></div>
-            <h3 class="h-sm" data-i18n="form.ok.t">Enquiry received</h3>
-            <p data-i18n="form.ok.b"></p>
-            <button class="btn btn--ghost btn--sm" type="button" id="again" data-i18n="form.again">Send another</button>
+          <div class="f-row">
+            <label for="f-loc" data-i18n="form.loc.l">Расположение объекта</label>
+            <input id="f-loc" name="location" type="text" data-i18n-ph="form.loc.p">
           </div>
-
-          <div class="form__state form__state--err">
-            <div class="ico"><svg width="21" height="21" viewBox="0 0 21 21" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.5 5v7M10.5 15.6v.2"/></svg></div>
-            <h3 class="h-sm" data-i18n="form.err.t">That did not send</h3>
-            <p data-i18n="form.err.b"></p>
-            <button class="btn btn--ghost btn--sm" type="button" id="retry" data-i18n="form.again">Send another</button>
+          <div class="f-row">
+            <label for="f-tons" data-i18n="form.tons.l">Примерно сколько тонн</label>
+            <select id="f-tons" name="tons">
+              <option value="" data-i18n="form.tons.p"></option>
+              <option value="0" data-i18n="form.tons.0"></option>
+              <option value="1" data-i18n="form.tons.1"></option>
+              <option value="2" data-i18n="form.tons.2"></option>
+              <option value="3" data-i18n="form.tons.3"></option>
+              <option value="4" data-i18n="form.tons.4"></option>
+            </select>
+          </div>
+          <div class="f-row f-row--wide">
+            <label for="f-job" data-i18n="form.job.l">Описание объекта</label>
+            <textarea id="f-job" name="job" data-i18n-ph="form.job.p" required></textarea>
+            <span class="err" data-i18n="form.req">Заполните это поле</span>
+          </div>
+          <div class="f-foot">
+            <button class="btn btn--y" id="f-send" type="submit" data-i18n="form.submit">Отправить заявку</button>
+            <p class="consent" data-i18n="form.consent"></p>
           </div>
         </form>
+        <div class="f-msg" id="f-ok">
+          <h3 data-i18n="form.ok.t">Заявка принята</h3>
+          <p data-i18n="form.ok.b"></p>
+        </div>
+        <div class="f-msg f-msg--err" id="f-err">
+          <h3 data-i18n="form.err.t">Не отправилось</h3>
+          <p data-i18n="form.err.b"></p>
+        </div>
       </div>
     </div>
   </section>
 
 </main>
 
-<!-- ═════════════════════════════ footer ══════════════════════════════════ -->
-<footer class="foot page">
+<footer class="foot">
   <div class="wrap">
     <div class="foot__top">
-      <div class="foot__brand">
-        <svg viewBox="0 0 470 122" role="img" aria-label="LIGARENT">
-          <rect x="0" y="0"   width="470" height="9"   fill="#c8102e"/>
-          <rect x="0" y="9"   width="470" height="104" fill="#ffcd11"/>
-          <rect x="0" y="113" width="470" height="9"   fill="#c8102e"/>
-          <text x="235" y="88" text-anchor="middle" fill="#0a0a0b"
-                font-family="Roboto Condensed, Archivo, system-ui, sans-serif"
-                font-size="80" font-weight="700" font-style="italic"
-                letter-spacing="-1">LIGARENT</text>
-        </svg>
-        <p class="tiny" data-i18n="foot.tag">Cat® bulldozer rental with operator.</p>
-        <p class="tiny foot__meaning" data-i18n="brand.meaning"></p>
-        <p class="tiny foot__credits" data-i18n="foot.credits"></p>
-      </div>
-
       <div>
-        <h4 data-i18n="foot.nav">Sections</h4>
+        <svg style="height:30px;width:auto" viewBox="0 0 470 122" role="img" aria-label="LIGARENT">
+          <rect x="0" y="0" width="470" height="9" fill="#c8102e"/>
+          <rect x="0" y="9" width="470" height="104" fill="#ffcd11"/>
+          <rect x="0" y="113" width="470" height="9" fill="#c8102e"/>
+          <text x="235" y="88" text-anchor="middle" fill="#0a0a0b"
+                font-family="Roboto Condensed, system-ui, sans-serif"
+                font-size="80" font-weight="700" font-style="italic" letter-spacing="-1">LIGARENT</text>
+        </svg>
+        <p class="foot__tag" data-i18n="foot.tag"></p>
+      </div>
+      <div>
+        <h4 data-i18n="foot.nav">Разделы</h4>
         <ul>
           <li><a href="#machines" data-i18n="nav.machines"></a></li>
+          <li><a href="#picker" data-i18n="nav.picker"></a></li>
           <li><a href="#work" data-i18n="nav.work"></a></li>
-          <li><a href="#picker" data-i18n="nav.rates"></a></li>
+          <li><a href="#coverage" data-i18n="nav.coverage"></a></li>
+          <li><a href="#faq" data-i18n="nav.faq"></a></li>
         </ul>
       </div>
-
       <div>
-        <h4 data-i18n="foot.contact">Contact</h4>
+        <h4 data-i18n="foot.contact">Контакты</h4>
         <ul>
-          <li><a data-tel data-fill="text" href="#"></a></li>
-          <li><a data-wa data-fill="text" href="#" target="_blank" rel="noopener"></a></li>
-          <li><a data-mail data-fill="text" href="#"></a></li>
-          <li><span data-i18n="foot.hours">Dispatch 24/7</span></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 data-i18n="foot.legal">Legal</h4>
-        <ul>
-          <li><a href="#" data-i18n="foot.priv"></a></li>
-          <li><a href="#" data-i18n="foot.terms"></a></li>
-          <li><a href="./credits.txt" data-i18n="foot.credits.link">Photo credits</a></li>
+          <li><span data-i18n="foot.hours">Диспетчер 24/7</span></li>
+          <li><a href="./credits.txt" data-i18n="foot.credits.link">Авторы фотографий</a></li>
         </ul>
       </div>
     </div>
-
-    <div class="foot__bar">
-      <p class="tiny">© <span id="year">2026</span> LIGARENT. <span data-i18n="foot.rights">All rights reserved.</span></p>
+    <div class="foot__bot">
+      <span>© LIGARENT</span>
+      <span data-i18n="foot.rights">Все права защищены.</span>
+      <span class="tm" data-i18n="foot.tm"></span>
     </div>
-    <p class="tiny foot__tm" data-i18n="foot.tm"></p>
   </div>
 </footer>
 
-
-<!-- ───────────────────────────── lightbox ──────────────────────────────── -->
-<div class="lightbox" id="lightbox" data-open="false" role="dialog" aria-modal="true">
-  <button class="lightbox__close glass glass--pill" type="button" aria-label="Close" data-i18n-attr="aria-label:lb.close">
-    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 2l12 12M14 2L2 14"/></svg>
-  </button>
-  <button class="lightbox__prev glass glass--pill" type="button" aria-label="Previous" data-i18n-attr="aria-label:lb.prev">
-    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 2L4 8l6 6"/></svg>
-  </button>
-  <button class="lightbox__next glass glass--pill" type="button" aria-label="Next" data-i18n-attr="aria-label:lb.next">
-    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 2l6 6-6 6"/></svg>
-  </button>
-  <figure class="lightbox__fig">
-    <img src="" alt="">
-    <figcaption class="lightbox__cap glass glass--thin"></figcaption>
-  </figure>
-</div>
-
-<script type="module" src="./assets/js/app.js"></script>
 </body>
 </html>
