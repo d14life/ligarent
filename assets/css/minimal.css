@@ -181,18 +181,35 @@ a{color:inherit;text-decoration:none}
   cursor:pointer;padding:10px 0 0;text-decoration:underline}
 
 /* ── что делаем ──────────────────────────────────────────────────────────── */
-.work{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
-.work article{padding:22px 24px 26px 0;border-bottom:1px solid var(--line)}
-.work article:nth-child(3n+2){padding-left:24px;border-left:1px solid var(--line)}
-.work article:nth-child(3n){padding-left:24px;border-left:1px solid var(--line)}
+/* Каждый вид работ — со своей фотографией: в тексте секции прямо сказано,
+   что на снимках настоящая машина на настоящем объекте. Пары «работа —
+   фотография» взяты из прежней сборки, чтобы подпись и кадр не разъехались. */
+.work{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 24px}
+.work article{display:flex;flex-direction:column}
+.work__ph{aspect-ratio:3/2;overflow:hidden;background:var(--paper);margin-bottom:14px}
+.work__ph img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.work article:hover .work__ph img{transform:scale(1.03)}
 .work .n{font-family:var(--disp);font-style:italic;font-weight:700;font-size:15px;color:var(--yellow);
-  display:block;margin-bottom:6px}
+  display:block;margin-bottom:4px}
 .work h3{font-size:17px;font-weight:600;margin:0 0 6px;letter-spacing:-.01em}
 .work p{margin:0;font-size:14px;line-height:1.55;color:var(--muted)}
 
+/* Широкая полоса-кадр между секциями: пауза для глаза и повод показать
+   машину целиком, а не карточкой. */
+.strip{position:relative;height:clamp(240px,34vw,460px);overflow:hidden;background:var(--black)}
+.strip img{width:100%;height:100%;object-fit:cover}
+.strip figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px var(--pad);
+  background:linear-gradient(0deg,#0d0d0dcc,transparent);color:#efeae1;font-size:13px}
+.strip figcaption span{max-width:var(--max);margin:0 auto;display:block}
+
+.pick__ph{margin-top:18px;aspect-ratio:4/3;overflow:hidden;background:var(--paper)}
+.pick__ph img{width:100%;height:100%;object-fit:cover}
+.pick__cap{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5}
+
 /* ── география ───────────────────────────────────────────────────────────── */
 .cov{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,60px);align-items:center}
-.cov__ph{aspect-ratio:16/11;overflow:hidden}
+.cov__ph2{display:grid;gap:14px}
+.cov__ph{aspect-ratio:16/11;overflow:hidden;margin:0}
 .cov__ph img{width:100%;height:100%;object-fit:cover}
 .band{border-top:1px solid var(--line-2);padding:18px 0}
 .band:last-of-type{border-bottom:1px solid var(--line-2)}
@@ -268,8 +285,6 @@ a{color:inherit;text-decoration:none}
   .pick{grid-template-columns:1fr}
   .result{position:static}
   .work{grid-template-columns:1fr 1fr}
-  .work article:nth-child(3n+2),.work article:nth-child(3n){padding-left:0;border-left:0}
-  .work article:nth-child(2n){padding-left:24px;border-left:1px solid var(--line)}
   .cov{grid-template-columns:1fr}
   .form{grid-template-columns:1fr}
   .contact-side{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:26px}
@@ -287,8 +302,7 @@ a{color:inherit;text-decoration:none}
   .stats div{border-right:0;padding:18px 0 22px;border-bottom:1px solid #ffffff1f}
   .stats div:nth-child(odd){border-right:1px solid #ffffff1f;padding-right:16px}
   .stats div:nth-child(even){padding-left:16px}
-  .work{grid-template-columns:1fr}
-  .work article:nth-child(2n){padding-left:0;border-left:0}
+  .work{grid-template-columns:1fr;gap:30px}
   .cta__in{align-items:flex-start}
   .foot__top{grid-template-columns:1fr}
 }
