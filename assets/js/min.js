@@ -201,3 +201,69 @@ $$('#langMenu button').forEach(b => b.addEventListener('click', () => {
 document.addEventListener('click', () => langBox?.classList.remove('open'));
 
 applyLang();
+
+/* ── движение при прокрутке ────────────────────────────────────────────────
+   Класс .js-reveal ставится отсюда: пока скрипт не выполнился, ничего не
+   спрятано, и страница читается даже если модуль не загрузился.
+   Заголовок и подзаголовок героя не участвуют — они должны быть в первом кадре.
+
+   Считаем положение заново на каждой прокрутке, а не полагаемся на
+   IntersectionObserver: отложенные картинки подгружаются по ходу и двигают
+   вёрстку вниз. Наблюдатель, уже пропустивший элемент, оставлял его невидимым
+   навсегда — на проверке так залипли шесть блоков. Пересчёт от этого защищён,
+   а через три секунды после загрузки всё оставшееся показывается безусловно:
+   невидимый текст на сайте недопустим ни при каком стечении обстоятельств.  */
+(() => {
+  const slow = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (slow) return;
+
+  document.documentElement.classList.add('js-reveal');
+
+  const GROUPS = [
+    '.stats div', '.sec__head', '.mach', '.work article', '.band',
+    '.faq details', '.cov__ph', '.f-row', '.cta__in > *', '.result', '.pick__ph',
+  ];
+  const STEP = 70, MAX = 6;          // шаг задержки и потолок, чтобы хвост не полз
+
+  for (const sel of GROUPS) {
+    document.querySelectorAll(sel).forEach((el, i) => {
+      if (!el.matches('.stats div')) el.setAttribute('data-rv', '');
+      el.style.setProperty('--d', Math.min(i, MAX) * STEP + 'ms');
+    });
+  }
+
+  let pending = [...document.querySelectorAll('[data-rv], .stats div, .hazard, .strip')];
+  let queued = false;
+
+  const show = (el) => el.classList.add('in');
+
+  const sweep = () => {
+    queued = false;
+    const line = innerHeight * 0.92;
+    pending = pending.filter((el) => {
+      if (el.getBoundingClientRect().top > line) return true;
+      show(el);
+      return false;
+    });
+    if (!pending.length) {
+      removeEventListener('scroll', onScroll);
+      removeEventListener('resize', onScroll);
+    }
+  };
+  const onScroll = () => { if (!queued) { queued = true; requestAnimationFrame(sweep); } };
+
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll, { passive: true });
+  addEventListener('load', onScroll);
+  sweep();
+
+  // Страховка: что бы ни случилось с вёрсткой, через три секунды после
+  // загрузки ни один блок не остаётся спрятанным.
+  addEventListener('load', () => setTimeout(() => { pending.forEach(show); pending = []; }, 3000));
+
+  // Шапка отделяется тенью, только когда страница действительно уехала вниз.
+  const hdr = document.querySelector('.hdr');
+  const stick = () => hdr.classList.toggle('stuck', scrollY > 8);
+  addEventListener('scroll', stick, { passive: true });
+  stick();
+})();

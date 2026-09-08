@@ -306,3 +306,53 @@ a{color:inherit;text-decoration:none}
   .cta__in{align-items:flex-start}
   .foot__top{grid-template-columns:1fr}
 }
+
+/* ═══════════════════════════ движение ═══════════════════════════════════════
+   Один язык движения на весь сайт: всё приезжает снизу, по очереди, и жёлтое
+   приходит последним. Никаких разрозненных эффектов.
+
+   Скрывать элементы можно только тогда, когда скрипт точно работает: класс
+   .js-reveal ставит сам скрипт. Без него страница видна целиком — отвалившийся
+   observer не оставит клиента перед пустым белым листом.
+   Заголовок героя не прячется никогда: это первое, ради чего открыли сайт.  */
+
+.js-reveal [data-rv]{
+  opacity:0;
+  transform:translateY(18px);
+}
+.js-reveal [data-rv].in{
+  opacity:1;
+  transform:none;
+  transition:opacity .62s cubic-bezier(.22,.7,.28,1) var(--d,0ms),
+             transform .62s cubic-bezier(.22,.7,.28,1) var(--d,0ms);
+}
+
+/* Полосатая лента разъезжается слева направо — единственный «жест» на сайте,
+   и он повторяет то, как разматывают сигнальную ленту на объекте. */
+.js-reveal .hazard{transform:scaleX(0);transform-origin:left}
+.js-reveal .hazard.in{transform:scaleX(1);transition:transform .9s cubic-bezier(.16,.84,.34,1) .15s}
+
+/* Кадр во всю ширину слегка «оседает» при появлении, без параллакса на скролле:
+   параллакс на длинной странице заметно дороже и начинает дёргаться. */
+.js-reveal .strip img{transform:scale(1.06)}
+.js-reveal .strip.in img{transform:scale(1);transition:transform 1.4s cubic-bezier(.2,.7,.3,1)}
+
+/* Шапка отделяется от страницы, только когда под ней что-то проехало. */
+.hdr{transition:box-shadow .2s,border-color .2s}
+.hdr.stuck{box-shadow:0 6px 24px #17150f14;border-bottom-color:var(--line-2)}
+
+/* Цифры в шапке героя набирают вес поочерёдно. */
+.js-reveal .stats div{opacity:0;transform:translateY(14px)}
+.js-reveal .stats div.in{opacity:1;transform:none;
+  transition:opacity .55s ease var(--d,0ms),transform .55s cubic-bezier(.22,.7,.28,1) var(--d,0ms)}
+
+@media(prefers-reduced-motion:reduce){
+  .js-reveal [data-rv],
+  .js-reveal [data-rv].in,
+  .js-reveal .stats div,
+  .js-reveal .stats div.in,
+  .js-reveal .hazard,
+  .js-reveal .hazard.in,
+  .js-reveal .strip img,
+  .js-reveal .strip.in img{opacity:1;transform:none;transition:none}
+}
