@@ -318,13 +318,13 @@ a{color:inherit;text-decoration:none}
 
 .js-reveal [data-rv]{
   opacity:0;
-  transform:translateY(18px);
+  transform:translateY(38px);
 }
 .js-reveal [data-rv].in{
   opacity:1;
   transform:none;
-  transition:opacity .62s cubic-bezier(.22,.7,.28,1) var(--d,0ms),
-             transform .62s cubic-bezier(.22,.7,.28,1) var(--d,0ms);
+  transition:opacity .7s cubic-bezier(.22,.7,.28,1) var(--d,0ms),
+             transform .8s cubic-bezier(.16,.84,.34,1) var(--d,0ms);
 }
 
 /* Полосатая лента разъезжается слева направо — единственный «жест» на сайте,
@@ -355,4 +355,32 @@ a{color:inherit;text-decoration:none}
   .js-reveal .hazard.in,
   .js-reveal .strip img,
   .js-reveal .strip.in img{opacity:1;transform:none;transition:none}
+}
+
+/* Фотографии открываются снизу вверх, как отваливается пласт грунта.
+   Клип живёт на рамке, а не на самой картинке: у картинки уже есть
+   свой transform на наведении, и два перехода дрались бы за него. */
+.js-reveal [data-rv] .work__ph,
+.js-reveal [data-rv] .mach__ph,
+.js-reveal [data-rv].cov__ph,
+.js-reveal [data-rv].pick__ph{clip-path:inset(0 0 100% 0)}
+.js-reveal [data-rv].in .work__ph,
+.js-reveal [data-rv].in .mach__ph,
+.js-reveal [data-rv].cov__ph.in,
+.js-reveal [data-rv].pick__ph.in{
+  clip-path:inset(0 0 0 0);
+  transition:clip-path .9s cubic-bezier(.16,.84,.34,1) calc(var(--d,0ms) + 60ms);
+}
+
+/* Крупный заголовок выезжает из-под линии — самый заметный жест в секции. */
+.js-reveal .sec__head h2{clip-path:inset(-15% 0 105% 0)}
+.js-reveal .sec__head.in h2{clip-path:inset(-15% 0 -15% 0);
+  transition:clip-path 1s cubic-bezier(.16,.84,.34,1) 80ms}
+
+@media(prefers-reduced-motion:reduce){
+  .js-reveal [data-rv] .work__ph,
+  .js-reveal [data-rv] .mach__ph,
+  .js-reveal [data-rv].cov__ph,
+  .js-reveal [data-rv].pick__ph,
+  .js-reveal .sec__head h2{clip-path:none;transition:none}
 }
